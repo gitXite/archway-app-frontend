@@ -55,7 +55,7 @@ function ImageUploadZone({
             onClick={openPicker}
         >
             {image ? (
-                <div className='relative aspect-4/3'>
+                <div className='relative aspect-square'>
                     <img
                         src={image}
                         alt={label}
@@ -69,7 +69,7 @@ function ImageUploadZone({
                     </div>
                 </div>
             ) : (
-                <div className='aspect-4/3 flex flex-col items-center justify-center gap-3 p-6'>
+                <div className='flex aspect-4/3 flex-col items-center justify-center gap-3 p-6'>
                     <div className='h-12 w-12 rounded-2xl bg-secondary flex items-center justify-center'>
                         <ImagePlus className='h-5 w-5 text-muted-foreground' />
                     </div>
@@ -117,7 +117,7 @@ export function GeneratePage() {
     return (
         <div className='flex flex-col h-full'>
             {/* Header area */}
-            <div className='px-8 pt-8 pb-4'>
+            <div className='px-8 pt-8 pb-8'>
                 <h1 className='font-serif text-3xl text-foreground'>
                     Generate
                 </h1>
@@ -128,7 +128,7 @@ export function GeneratePage() {
             </div>
 
             {/* Main content */}
-            <div className='flex-1 px-8 pb-8'>
+            <div className='flex-1 px-8 pb-16'>
                 <div className='max-w-5xl mx-auto'>
                     {/* Upload zones */}
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
@@ -173,7 +173,7 @@ export function GeneratePage() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className='rounded-2xl border border-border bg-card overflow-hidden'
+                            className='rounded-2xl transition-all border border-border bg-card overflow-hidden hover:border-primary/30'
                         >
                             <div className='px-4 py-3 border-b border-border/50'>
                                 <span className='text-xs font-medium text-primary uppercase tracking-wider'>
@@ -192,11 +192,18 @@ export function GeneratePage() {
                                         </p>
                                     </div>
                                 ) : generatedImage ? (
-                                    <img
-                                        src={generatedImage}
-                                        alt='Generated render'
-                                        className='w-full h-full object-cover'
-                                    />
+                                    <a 
+                                        href={generatedImage} 
+                                        rel='noopener noreferrer' 
+                                        target='_blank'
+                                        className='w-full h-full'
+                                    >
+                                        <img
+                                            src={generatedImage}
+                                            alt='Generated render'
+                                            className='w-full h-full object-cover'
+                                        />
+                                    </a>
                                 ) : null}
                             </div>
                         </motion.div>

@@ -71,7 +71,7 @@ export function TrainingPage() {
                         <Button
                             variant='outline'
                             onClick={clearAll}
-                            className='rounded-full gap-2 border-border text-muted-foreground'
+                            className='rounded-full gap-2 border-border text-muted-foreground cursor-pointer'
                         >
                             <X className='h-4 w-4' />
                             Clear All
@@ -80,7 +80,7 @@ export function TrainingPage() {
                     <Button
                         onClick={retrain}
                         disabled={!canTrain || isTraining}
-                        className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full'
+                        className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full cursor-pointer'
                     >
                         {isTraining ? (
                             <>
@@ -99,7 +99,7 @@ export function TrainingPage() {
 
             <div className='flex-1 px-8 pb-8'>
                 {/* Status bar */}
-                <div className='flex items-center gap-2 mb-4'>
+                <div className='flex items-center gap-2 mb-8'>
                     <span
                         className={`text-sm font-medium ${canTrain ? 'text-primary' : 'text-muted-foreground'}`}
                     >
@@ -176,7 +176,7 @@ export function TrainingPage() {
                                                 onClick={() =>
                                                     removeImage(img.id)
                                                 }
-                                                className='absolute top-1.5 right-1.5 h-6 w-6 rounded-full bg-foreground/70 text-background flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'
+                                                className='absolute top-1.5 right-1.5 h-6 w-6 rounded-full bg-foreground/70 text-background flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity'
                                             >
                                                 <X className='h-3 w-3' />
                                             </button>
