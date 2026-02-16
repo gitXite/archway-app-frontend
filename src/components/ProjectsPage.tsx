@@ -166,7 +166,7 @@ export function ProjectsPage() {
                                             asChild
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            <button className='h-8 w-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary transition-colors opacity-0 group-hover:opacity-100'>
+                                            <button className='h-8 w-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary transition-colors opacity-0 group-hover:opacity-100 max-sm:opacity-100'>
                                                 <MoreHorizontal className='h-4 w-4' />
                                             </button>
                                         </DropdownMenuTrigger>
