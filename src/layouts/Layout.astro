@@ -1,4 +1,5 @@
 ---
+import { TooltipProvider } from '@/components/ui/tooltip';
 import '../styles/global.css';
 
 interface Props {
@@ -27,6 +28,8 @@ const { title, description } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   </head>
   <body>
-    <slot />
+    <TooltipProvider>
+      <slot />
+    </TooltipProvider>
   </body>
 </html>

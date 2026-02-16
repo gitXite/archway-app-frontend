@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { DashboardLayout } from '../components/DashboardLayout';
+import { ProjectsPage } from '../components/ProjectsPage';
+import '../styles/global.css';
+---
+
+<Layout title='Archway - Model Training' description='Model Training'>
+    <DashboardLayout client:load>
+        <ProjectsPage />
+    </DashboardLayout>
+</Layout>
