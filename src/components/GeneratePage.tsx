@@ -152,7 +152,7 @@ export function GeneratePage() {
                             onClick={handleGenerate}
                             disabled={!canGenerate}
                             size='lg'
-                            className='bg-foreground hover:bg-foreground/90 text-background gap-2.5 px-8 py-6 text-base rounded-full shadow-lg transition-all disabled:opacity-40'
+                            className='bg-foreground hover:bg-foreground/90 text-background gap-2.5 px-8 py-6 text-base rounded-full shadow-lg transition-all disabled:opacity-40 cursor-pointer'
                         >
                             {isGenerating ? (
                                 <>

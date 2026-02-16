@@ -176,9 +176,9 @@ export function ProjectsPage() {
                                                     e.stopPropagation();
                                                     deleteProject(project.id);
                                                 }}
-                                                className='text-destructive focus:text-destructive'
+                                                className='text-destructive focus:text-destructive focus:bg-destructive/30 focus:cursor-pointer transition-colors'
                                             >
-                                                <Trash2 className='h-4 w-4 mr-2' />
+                                                <Trash2 className='h-4 w-4 mr-2 text-destructive' />
                                                 Delete
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
@@ -214,13 +214,14 @@ export function ProjectsPage() {
                             <Button
                                 variant='ghost'
                                 onClick={() => setShowNewDialog(false)}
+                                className='cursor-pointer'
                             >
                                 Cancel
                             </Button>
                             <Button
                                 onClick={createProject}
                                 disabled={!newName.trim()}
-                                className='bg-foreground text-background hover:bg-foreground/90'
+                                className='bg-foreground text-background hover:bg-foreground/90 cursor-pointer'
                             >
                                 Create
                             </Button>

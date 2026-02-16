@@ -116,8 +116,8 @@ export function TrainingPage() {
                 {/* Drop zone / grid */}
                 <div
                     className={`
-            rounded-2xl border-2 border-dashed transition-colors
-            ${isDragOver ? 'border-primary bg-primary/5' : 'border-border'}
+            rounded-2xl border-2 border-dashed transition-colors hover:
+            ${isDragOver ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/30'}
           `}
                     onDragOver={(e) => {
                         e.preventDefault();
