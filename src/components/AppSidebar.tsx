@@ -28,10 +28,10 @@ export function AppSidebar() {
     }, []);
 
     return (
-        <Sidebar className='border-r-0'>
+        <Sidebar className='border-r-0 overflow-hidden'>
             <SidebarHeader className='p-5'>
                 <div className='flex items-center gap-2.5'>
-                    <div className='h-8 w-8 rounded-lg bg-primary flex items-center justify-center'>
+                    <div className='h-8 w-8 rounded-lg flex items-center justify-center'>
                         <img src='/archway-logo.webp' alt='Archway' />
                     </div>
                     <span className='font-serif text-xl text-foreground tracking-tight'>

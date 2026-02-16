@@ -17,7 +17,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 <AppSidebar />
                 <SidebarInset className='flex flex-col'>
                     <header className='h-14 flex items-center gap-3 px-6 border-b border-border/50'>
-                        <SidebarTrigger className='text-muted-foreground' />
+                        <SidebarTrigger className='text-muted-foreground hover:bg-secondary/60' />
                     </header>
                     <main className='flex-1 overflow-auto'>{children}</main>
                 </SidebarInset>

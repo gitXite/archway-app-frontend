@@ -123,7 +123,7 @@ export function ProjectsPage() {
                 </div>
                 <Button
                     onClick={() => setShowNewDialog(true)}
-                    className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full'
+                    className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full cursor-pointer'
                 >
                     <FolderPlus className='h-4 w-4' />
                     New Project

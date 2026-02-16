@@ -130,7 +130,7 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
                                                     e.stopPropagation();
                                                     removeImage(img.id);
                                                 }}
-                                                className='absolute top-1 right-1 h-5 w-5 rounded-full bg-foreground/70 text-background flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'
+                                                className='absolute top-1 right-1 h-5 w-5 rounded-full bg-foreground/70 text-background flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer'
                                             >
                                                 <X className='h-3 w-3' />
                                             </button>
@@ -159,7 +159,7 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
                     <Button
                         onClick={onComplete}
                         disabled={!canProceed}
-                        className='bg-primary hover:bg-primary/90 text-primary-foreground gap-2 px-6'
+                        className='bg-primary hover:bg-primary/90 text-primary-foreground gap-2 px-6 cursor-pointer'
                     >
                         Train Model
                         <ArrowRight className='h-4 w-4' />
