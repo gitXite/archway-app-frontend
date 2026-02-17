@@ -7,6 +7,7 @@ import {
     MoreHorizontal,
     Trash2,
     ChevronLeft,
+    Share,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,6 +24,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { toast } from 'sonner';
 
 interface Project {
     id: string;
@@ -81,11 +83,14 @@ const itemVariants = {
 
 export function ProjectsPage() {
     const [projects, setProjects] = useState<Project[]>(demoProjects);
-    const [showNewDialog, setShowNewDialog] = useState(false);
+    const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
+    const [showNewShareDialog, setShowNewShareDialog] = useState(false);
     const [newName, setNewName] = useState('');
     const [selectedProject, setSelectedProject] = useState<Project | null>(
         null,
     );
+    const [sharedEmail, setSharedEmail] = useState('');
+    const [sharedProject, setSharedProject] = useState('');
 
     const createProject = () => {
         if (!newName.trim()) return;
@@ -99,12 +104,22 @@ export function ProjectsPage() {
             ...prev,
         ]);
         setNewName('');
-        setShowNewDialog(false);
+        setShowNewProjectDialog(false);
     };
 
     const deleteProject = (id: string) => {
         setProjects((prev) => prev.filter((p) => p.id !== id));
         if (selectedProject?.id === id) setSelectedProject(null);
+    };
+
+    const shareProject = (id: string, user: string) => {
+        if (!sharedEmail.trim()) return;
+        // share project with another user
+        toast.success('Prosjekt delt med bruker:', {
+            description: sharedEmail,
+        });
+        setSharedEmail('');
+        setShowNewShareDialog(false);
     };
 
     if (selectedProject) {
@@ -155,7 +170,7 @@ export function ProjectsPage() {
                     </p>
                 </div>
                 <Button
-                    onClick={() => setShowNewDialog(true)}
+                    onClick={() => setShowNewProjectDialog(true)}
                     className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full cursor-pointer'
                 >
                     <FolderPlus className='h-4 w-4' />
@@ -212,6 +227,17 @@ export function ProjectsPage() {
                                             <DropdownMenuItem
                                                 onClick={(e) => {
                                                     e.stopPropagation();
+                                                    setSharedProject(project.id);
+                                                    setShowNewShareDialog(true);
+                                                }}
+                                                className='text-foreground focus:bg-secondary focus:cursor-pointer transition-colors'
+                                            >
+                                                <Share className='h-4 w-4 mr-3 text-foreground' />
+                                                Del
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
                                                     deleteProject(project.id);
                                                 }}
                                                 className='text-destructive focus:text-destructive focus:bg-destructive/10 focus:cursor-pointer transition-colors'
@@ -228,7 +254,58 @@ export function ProjectsPage() {
                 </div>
             </div>
 
-            <Dialog open={showNewDialog} onOpenChange={setShowNewDialog}>
+            <Dialog
+                open={showNewShareDialog}
+                onOpenChange={setShowNewShareDialog}
+            >
+                <DialogContent className='max-w-md'>
+                    <DialogHeader>
+                        <DialogTitle className='font-serif text-xl'>
+                            Del Prosjekt
+                        </DialogTitle>
+                        <DialogDescription>
+                            Del prosjektet med en kollega.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className='space-y-4 mt-2'>
+                        <Input
+                            placeholder='Email'
+                            type='email'
+                            value={sharedEmail}
+                            onChange={(e) => setSharedEmail(e.target.value)}
+                            onKeyDown={(e) =>
+                                e.key === 'Enter' &&
+                                shareProject(sharedProject, sharedEmail)
+                            }
+                            className='bg-secondary/50 border-border'
+                        />
+                        <div className='flex justify-end gap-2'>
+                            <Button
+                                variant='ghost'
+                                onClick={() => setShowNewShareDialog(false)}
+                                className='cursor-pointer hover:bg-secondary'
+                            >
+                                Avbryt
+                            </Button>
+                            <Button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    shareProject(sharedProject, sharedEmail);
+                                }}
+                                disabled={!sharedEmail.trim()}
+                                className='bg-foreground text-background hover:bg-foreground/90 cursor-pointer'
+                            >
+                                Del
+                            </Button>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog
+                open={showNewProjectDialog}
+                onOpenChange={setShowNewProjectDialog}
+            >
                 <DialogContent className='max-w-md'>
                     <DialogHeader>
                         <DialogTitle className='font-serif text-xl'>
@@ -251,7 +328,7 @@ export function ProjectsPage() {
                         <div className='flex justify-end gap-2'>
                             <Button
                                 variant='ghost'
-                                onClick={() => setShowNewDialog(false)}
+                                onClick={() => setShowNewProjectDialog(false)}
                                 className='cursor-pointer hover:bg-secondary'
                             >
                                 Avbryt
