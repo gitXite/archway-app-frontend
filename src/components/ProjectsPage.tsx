@@ -8,6 +8,7 @@ import {
     Trash2,
     ChevronLeft,
     Share,
+    Edit,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -85,12 +86,13 @@ export function ProjectsPage() {
     const [projects, setProjects] = useState<Project[]>(demoProjects);
     const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
     const [showNewShareDialog, setShowNewShareDialog] = useState(false);
+    const [showNewRenameDialog, setShowNewRenameDialog] = useState(false);
     const [newName, setNewName] = useState('');
     const [selectedProject, setSelectedProject] = useState<Project | null>(
         null,
     );
     const [sharedEmail, setSharedEmail] = useState('');
-    const [sharedProject, setSharedProject] = useState('');
+    const [project, setProject] = useState('');
 
     const createProject = () => {
         if (!newName.trim()) return;
@@ -103,13 +105,35 @@ export function ProjectsPage() {
             },
             ...prev,
         ]);
+
+        // create in database
+
         setNewName('');
         setShowNewProjectDialog(false);
+    };
+
+    const renameProject = (id: string) => {
+        if (!newName.trim()) return;
+        setProjects((prev) => (
+            prev.map((project) => (
+                project.id === id
+                    ? {...project, name: newName.trim()}
+                    : project
+            ))
+        ));
+
+        // rename into database
+
+        setNewName('');
+        setProject('');
+        setShowNewRenameDialog(false);
     };
 
     const deleteProject = (id: string) => {
         setProjects((prev) => prev.filter((p) => p.id !== id));
         if (selectedProject?.id === id) setSelectedProject(null);
+
+        // delete from database
     };
 
     const shareProject = (id: string, user: string) => {
@@ -118,7 +142,11 @@ export function ProjectsPage() {
         toast.success('Prosjekt delt med bruker:', {
             description: sharedEmail,
         });
+
+        // change permission in database
+
         setSharedEmail('');
+        setProject('');
         setShowNewShareDialog(false);
     };
 
@@ -227,7 +255,18 @@ export function ProjectsPage() {
                                             <DropdownMenuItem
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    setSharedProject(project.id);
+                                                    setProject(project.id);
+                                                    setShowNewRenameDialog(true);
+                                                }}
+                                                className='text-foreground focus:bg-secondary focus:cursor-pointer transition-colors'
+                                            >
+                                                <Edit className='h-4 w-4 mr-3 text-foreground' />
+                                                Endre navn
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setProject(project.id);
                                                     setShowNewShareDialog(true);
                                                 }}
                                                 className='text-foreground focus:bg-secondary focus:cursor-pointer transition-colors'
@@ -255,6 +294,54 @@ export function ProjectsPage() {
             </div>
 
             <Dialog
+                open={showNewRenameDialog}
+                onOpenChange={setShowNewRenameDialog}
+            >
+                <DialogContent className='max-w-md'>
+                    <DialogHeader>
+                        <DialogTitle className='font-serif text-xl'>
+                            Endre Prosjektnavn
+                        </DialogTitle>
+                        <DialogDescription>
+                            Endre navn på prosjektet.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className='space-y-4 mt-2'>
+                        <Input
+                            placeholder='Nytt navn'
+                            type='text'
+                            value={newName}
+                            onChange={(e) => setNewName(e.target.value)}
+                            onKeyDown={(e) =>
+                                e.key === 'Enter' &&
+                                renameProject(project)
+                            }
+                            className='bg-secondary/50 border-border'
+                        />
+                        <div className='flex justify-end gap-2'>
+                            <Button
+                                variant='ghost'
+                                onClick={() => setShowNewShareDialog(false)}
+                                className='cursor-pointer hover:bg-secondary'
+                            >
+                                Avbryt
+                            </Button>
+                            <Button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    renameProject(project);
+                                }}
+                                disabled={!newName.trim()}
+                                className='bg-foreground text-background hover:bg-foreground/90 cursor-pointer'
+                            >
+                                Lagre
+                            </Button>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog
                 open={showNewShareDialog}
                 onOpenChange={setShowNewShareDialog}
             >
@@ -275,7 +362,7 @@ export function ProjectsPage() {
                             onChange={(e) => setSharedEmail(e.target.value)}
                             onKeyDown={(e) =>
                                 e.key === 'Enter' &&
-                                shareProject(sharedProject, sharedEmail)
+                                shareProject(project, sharedEmail)
                             }
                             className='bg-secondary/50 border-border'
                         />
@@ -290,7 +377,7 @@ export function ProjectsPage() {
                             <Button
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    shareProject(sharedProject, sharedEmail);
+                                    shareProject(project, sharedEmail);
                                 }}
                                 disabled={!sharedEmail.trim()}
                                 className='bg-foreground text-background hover:bg-foreground/90 cursor-pointer'
