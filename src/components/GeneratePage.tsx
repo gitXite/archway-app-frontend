@@ -164,13 +164,13 @@ export function GeneratePage() {
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
                         <ImageUploadZone
                             label='Input'
-                            sublabel='Facade, sketch, or plan'
+                            sublabel='Fasade, tegning, eller sketch'
                             image={inputImage}
                             onImageSelect={handleInputSelect}
                         />
                         <ImageUploadZone
                             label='Referanse'
-                            sublabel='Style reference image'
+                            sublabel='Referansebilde for stil, materialvalg, og komposisjon'
                             image={referenceImage}
                             onImageSelect={handleReferenceSelect}
                         />
