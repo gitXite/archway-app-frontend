@@ -321,7 +321,7 @@ export function ProjectsPage() {
                         <div className='flex justify-end gap-2'>
                             <Button
                                 variant='ghost'
-                                onClick={() => setShowNewShareDialog(false)}
+                                onClick={() => setShowNewRenameDialog(false)}
                                 className='cursor-pointer hover:bg-secondary'
                             >
                                 Avbryt
