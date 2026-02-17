@@ -10,7 +10,6 @@ import {
     ComboboxInput,
     ComboboxItem,
     ComboboxList,
-    ComboboxTrigger,
 } from '@/components/ui/combobox';
 
 interface ImageUploadZoneProps {
@@ -70,7 +69,7 @@ function ImageUploadZone({
             onClick={openPicker}
         >
             {image ? (
-                <div className='relative aspect-square'>
+                <div className='relative aspect-4/3'>
                     <img
                         src={image}
                         alt={label}
@@ -129,7 +128,7 @@ export function GeneratePage() {
         }, 3000);
     };
 
-    const canGenerate = inputImage && referenceImage && !isGenerating;
+    const canGenerate = inputImage && referenceImage && !isGenerating && project;
 
     return (
         <div className='flex flex-col h-full'>
