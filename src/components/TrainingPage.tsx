@@ -80,7 +80,7 @@ export function TrainingPage() {
                         <Button
                             variant='outline'
                             onClick={clearAll}
-                            className='rounded-full gap-2 border-border text-muted-foreground cursor-pointer'
+                            className='rounded-full gap-2 border-border text-muted-foreground cursor-pointer hover:bg-secondary'
                         >
                             <X className='h-4 w-4' />
                             Fjern Alt

@@ -214,7 +214,7 @@ export function ProjectsPage() {
                                                     e.stopPropagation();
                                                     deleteProject(project.id);
                                                 }}
-                                                className='text-destructive focus:text-destructive focus:bg-destructive/30 focus:cursor-pointer transition-colors'
+                                                className='text-destructive focus:text-destructive focus:bg-destructive/10 focus:cursor-pointer transition-colors'
                                             >
                                                 <Trash2 className='h-4 w-4 mr-3 text-destructive' />
                                                 Fjern
@@ -252,7 +252,7 @@ export function ProjectsPage() {
                             <Button
                                 variant='ghost'
                                 onClick={() => setShowNewDialog(false)}
-                                className='cursor-pointer'
+                                className='cursor-pointer hover:bg-secondary'
                             >
                                 Avbryt
                             </Button>
