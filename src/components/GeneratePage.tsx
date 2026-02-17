@@ -3,6 +3,14 @@ import { motion } from 'framer-motion';
 import { ImagePlus, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import {
+    Combobox,
+    ComboboxContent,
+    ComboboxEmpty,
+    ComboboxInput,
+    ComboboxItem,
+    ComboboxList,
+} from '@/components/ui/combobox';
 
 interface ImageUploadZoneProps {
     label: string;
@@ -10,6 +18,11 @@ interface ImageUploadZoneProps {
     image: string | null;
     onImageSelect: (file: File) => void;
 }
+
+const projects: string[] = [
+    'Villa Nordstrand',
+    'Kontorbygg Aker Brygge'
+] as const;
 
 function ImageUploadZone({
     label,
@@ -93,6 +106,7 @@ export function GeneratePage() {
     const [referenceImage, setReferenceImage] = useState<string | null>(null);
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+    const [project, setProject] = useState<string | null>(null);
 
     const handleInputSelect = (file: File) => {
         setInputImage(URL.createObjectURL(file));
@@ -124,8 +138,23 @@ export function GeneratePage() {
                     Generering
                 </h1>
                 <p className='text-sm text-muted-foreground mt-1'>
-                    Last opp en input-tegning og et referansebilde for å generere en render.
+                    Last opp en input-tegning og et referansebilde for å
+                    generere en render.
                 </p>
+
+                <Combobox items={projects} onValueChange={(value) => setProject(value as string | null)}>
+                    <ComboboxInput placeholder='Velg et prosjekt' className={'w-50 my-2'} />
+                    <ComboboxContent>
+                        <ComboboxEmpty>Ingen prosjekter funnet</ComboboxEmpty>
+                        <ComboboxList>
+                            {(prosjekt: string) => (
+                                <ComboboxItem key={prosjekt} value={prosjekt}>
+                                    {prosjekt}
+                                </ComboboxItem>
+                            )}
+                        </ComboboxList>
+                    </ComboboxContent>
+                </Combobox>
             </div>
 
             {/* Main content */}
@@ -193,9 +222,9 @@ export function GeneratePage() {
                                         </p>
                                     </div>
                                 ) : generatedImage ? (
-                                    <a 
-                                        href={generatedImage} 
-                                        rel='noopener noreferrer' 
+                                    <a
+                                        href={generatedImage}
+                                        rel='noopener noreferrer'
                                         target='_blank'
                                         className='w-full h-full'
                                     >

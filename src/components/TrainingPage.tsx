@@ -15,6 +15,9 @@ export function TrainingPage() {
     const [isDragOver, setIsDragOver] = useState(false);
     const [isTraining, setIsTraining] = useState(false);
 
+    // fetch currently trained images from database after initial onboarding
+    // show current dataset under image drop zone
+
     const handleFiles = useCallback((files: FileList | File[]) => {
         const newImages: TrainingImage[] = Array.from(files)
             .filter((f) => f.type.startsWith('image/'))
