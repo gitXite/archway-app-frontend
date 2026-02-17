@@ -10,6 +10,7 @@ import {
     ComboboxInput,
     ComboboxItem,
     ComboboxList,
+    ComboboxTrigger,
 } from '@/components/ui/combobox';
 
 interface ImageUploadZoneProps {
