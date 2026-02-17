@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { DashboardLayout } from '@/components/DashboardLayout';
+import { InvoicePage } from '@/components/InvoicePage';
+import '../styles/global.css';
+
+const pathname = Astro.url.pathname;
+---
+
+<Layout title='Archway - Fakturering' description='Fakturering'>
+    <DashboardLayout pathname={pathname}>
+        <InvoicePage />
+    </DashboardLayout>
+</Layout>

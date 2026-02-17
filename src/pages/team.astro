@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { DashboardLayout } from '@/components/DashboardLayout';
+import { TeamPage } from '@/components/TeamPage';
+import '../styles/global.css';
+
+const pathname = Astro.url.pathname;
+---
+
+<Layout title='Archway - Team' description='Team'>
+    <DashboardLayout pathname={pathname}>
+        <TeamPage />
+    </DashboardLayout>
+</Layout>
