@@ -5,21 +5,24 @@ import {
     SidebarInset,
 } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
+import { Toaster } from 'sonner';
 
 interface DashboardLayoutProps {
     children: ReactNode;
+    pathname: string;
 }
 
-export function DashboardLayout({ children }: DashboardLayoutProps) {
+export function DashboardLayout({ children, pathname }: DashboardLayoutProps) {
     return (
         <SidebarProvider>
             <div className='min-h-screen flex w-full'>
-                <AppSidebar />
+                <AppSidebar pathname={pathname} />
                 <SidebarInset className='flex flex-col'>
                     <header className='h-14 flex items-center gap-3 px-6 border-b border-border/50'>
-                        <SidebarTrigger className='text-muted-foreground hover:bg-secondary/60' />
+                        <SidebarTrigger className='text-muted-foreground hover:bg-secondary' />
                     </header>
                     <main className='flex-1 overflow-auto'>{children}</main>
+                    <Toaster position='top-center' />
                 </SidebarInset>
             </div>
         </SidebarProvider>

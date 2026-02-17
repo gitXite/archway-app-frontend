@@ -3,10 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import { DashboardLayout } from '../components/DashboardLayout';
 import { ProjectsPage } from '../components/ProjectsPage';
 import '../styles/global.css';
+
+const pathname = Astro.url.pathname;
 ---
 
-<Layout title='Archway - Model Training' description='Model Training'>
-    <DashboardLayout client:load>
+<Layout title='Archway - Prosjekter' description='Prosjekter'>
+    <DashboardLayout pathname={pathname} client:load>
         <ProjectsPage client:load />
     </DashboardLayout>
 </Layout>

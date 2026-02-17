@@ -46,6 +46,39 @@ const demoProjects: Project[] = [
     },
 ];
 
+const itemVariants = {
+    initial: {
+        opacity: 0,
+        y: 14,
+        scale: 0.97,
+        filter: 'blur(4px)',
+    },
+    animate: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: 'blur(0px)',
+        transition: {
+            type: 'spring' as const,
+            stiffness: 500,
+            damping: 28,
+            mass: 0.6,
+            opacity: { duration: 0.12 },
+            filter: { duration: 0.12 },
+        },
+    },
+    exit: {
+        opacity: 0,
+        x: -50,
+        scale: 0.92,
+        filter: 'blur(4px)',
+        transition: {
+            duration: 0.2,
+            ease: [0.4, 0, 1, 1] as const,
+        },
+    },
+};
+
 export function ProjectsPage() {
     const [projects, setProjects] = useState<Project[]>(demoProjects);
     const [showNewDialog, setShowNewDialog] = useState(false);
@@ -77,19 +110,19 @@ export function ProjectsPage() {
     if (selectedProject) {
         return (
             <div className='flex flex-col h-full'>
-                <div className='px-8 pt-8 pb-4'>
+                <div className='px-8 pt-8 pb-8'>
                     <button
                         onClick={() => setSelectedProject(null)}
                         className='flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-3'
                     >
                         <ChevronLeft className='h-4 w-4' />
-                        Back to projects
+                        Tilbake til prosjekter
                     </button>
                     <h1 className='font-serif text-3xl text-foreground'>
                         {selectedProject.name}
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
-                        {selectedProject.renders.length} renders
+                        {selectedProject.renders.length} renderinger
                     </p>
                 </div>
                 <div className='flex-1 px-8 pb-8'>
@@ -98,11 +131,11 @@ export function ProjectsPage() {
                             <Image className='h-6 w-6 text-muted-foreground' />
                         </div>
                         <p className='text-sm text-muted-foreground'>
-                            Renders will appear here after generation.
+                            Renderinger vil havne her etter generering.
                         </p>
                         <p className='text-xs text-muted-foreground/70 mt-1'>
-                            Go to Generate and select this project as the
-                            destination.
+                            Naviger til hovedsiden (Generering) og velg dette
+                            prosjektet som destinasjon.
                         </p>
                     </div>
                 </div>
@@ -114,11 +147,11 @@ export function ProjectsPage() {
         <div className='flex flex-col h-full'>
             <div className='px-8 pt-8 pb-8 flex items-start justify-between'>
                 <div>
-                    <h1 className='font-serif text-3xl text-foreground'>
-                        Projects
+                    <h1 className='font-serif text-3xl text-foreground font-medium'>
+                        Prosjekter
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
-                        Organize your renders into project folders.
+                        Organiser dine renderinger i prosjektmapper.
                     </p>
                 </div>
                 <Button
@@ -126,20 +159,20 @@ export function ProjectsPage() {
                     className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full cursor-pointer'
                 >
                     <FolderPlus className='h-4 w-4' />
-                    New Project
+                    Nytt Prosjekt
                 </Button>
             </div>
 
             <div className='flex-1 px-8 pb-8'>
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-                    <AnimatePresence>
+                    <AnimatePresence mode='sync'>
                         {projects.map((project) => (
                             <motion.div
                                 key={project.id}
-                                layout
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
+                                variants={itemVariants}
+                                initial='initial'
+                                animate='animate'
+                                exit='exit'
                                 onClick={() => setSelectedProject(project)}
                                 className='group rounded-2xl border border-border bg-card hover:border-primary/30 transition-all cursor-pointer p-5'
                             >
@@ -153,10 +186,15 @@ export function ProjectsPage() {
                                                 {project.name}
                                             </p>
                                             <p className='text-xs text-muted-foreground'>
-                                                {project.renders.length} renders
-                                                •{' '}
+                                                {project.renders.length}{' '}
+                                                renderinger •{' '}
                                                 {project.createdAt.toLocaleDateString(
                                                     'nb-NO',
+                                                    {
+                                                        day: 'numeric',
+                                                        month: 'long',
+                                                        year: 'numeric',
+                                                    },
                                                 )}
                                             </p>
                                         </div>
@@ -178,8 +216,8 @@ export function ProjectsPage() {
                                                 }}
                                                 className='text-destructive focus:text-destructive focus:bg-destructive/30 focus:cursor-pointer transition-colors'
                                             >
-                                                <Trash2 className='h-4 w-4 mr-2 text-destructive' />
-                                                Delete
+                                                <Trash2 className='h-4 w-4 mr-3 text-destructive' />
+                                                Fjern
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
@@ -194,15 +232,15 @@ export function ProjectsPage() {
                 <DialogContent className='max-w-md'>
                     <DialogHeader>
                         <DialogTitle className='font-serif text-xl'>
-                            New Project
+                            Nytt Prosjekt
                         </DialogTitle>
                         <DialogDescription>
-                            Create a folder to organize your renders.
+                            Lag en mappe for å organisere renderingene dine.
                         </DialogDescription>
                     </DialogHeader>
                     <div className='space-y-4 mt-2'>
                         <Input
-                            placeholder='Project name'
+                            placeholder='Prosjektnavn'
                             value={newName}
                             onChange={(e) => setNewName(e.target.value)}
                             onKeyDown={(e) =>
@@ -216,14 +254,14 @@ export function ProjectsPage() {
                                 onClick={() => setShowNewDialog(false)}
                                 className='cursor-pointer'
                             >
-                                Cancel
+                                Avbryt
                             </Button>
                             <Button
                                 onClick={createProject}
                                 disabled={!newName.trim()}
                                 className='bg-foreground text-background hover:bg-foreground/90 cursor-pointer'
                             >
-                                Create
+                                Opprett
                             </Button>
                         </div>
                     </div>

@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Upload, ImagePlus, ArrowRight, Loader2 } from 'lucide-react';
+import { ImagePlus, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 interface ImageUploadZoneProps {
     label: string;
@@ -109,6 +110,7 @@ export function GeneratePage() {
         setTimeout(() => {
             setIsGenerating(false);
             setGeneratedImage(inputImage); // placeholder — would be API result
+            toast.success('Din render er klar!');
         }, 3000);
     };
 
@@ -118,12 +120,11 @@ export function GeneratePage() {
         <div className='flex flex-col h-full'>
             {/* Header area */}
             <div className='px-8 pt-8 pb-8'>
-                <h1 className='font-serif text-3xl text-foreground'>
-                    Generate
+                <h1 className='font-serif text-3xl text-foreground font-medium'>
+                    Generering
                 </h1>
                 <p className='text-sm text-muted-foreground mt-1'>
-                    Upload an input drawing and a reference image to create a
-                    rendering.
+                    Last opp en input-tegning og et referansebilde for å generere en render.
                 </p>
             </div>
 
@@ -139,7 +140,7 @@ export function GeneratePage() {
                             onImageSelect={handleInputSelect}
                         />
                         <ImageUploadZone
-                            label='Reference'
+                            label='Referanse'
                             sublabel='Style reference image'
                             image={referenceImage}
                             onImageSelect={handleReferenceSelect}
@@ -157,11 +158,11 @@ export function GeneratePage() {
                             {isGenerating ? (
                                 <>
                                     <Loader2 className='h-5 w-5 animate-spin' />
-                                    Generating...
+                                    Genererer...
                                 </>
                             ) : (
                                 <>
-                                    Generate Render
+                                    Generer Render
                                     <ArrowRight className='h-5 w-5' />
                                 </>
                             )}
@@ -188,7 +189,7 @@ export function GeneratePage() {
                                             <div className='absolute inset-0 h-16 w-16 rounded-full border-2 border-primary border-t-transparent animate-spin' />
                                         </div>
                                         <p className='text-sm text-muted-foreground'>
-                                            Creating your render...
+                                            Oppretter din render...
                                         </p>
                                     </div>
                                 ) : generatedImage ? (

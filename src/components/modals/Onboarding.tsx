@@ -60,14 +60,13 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
             <DialogContent className='max-w-2xl max-h-[90vh] overflow-hidden bg-popover border-border/60 [&>button]:hidden'>
                 <DialogHeader className='pb-2'>
                     <DialogTitle className='font-serif text-2xl'>
-                        Welcome to <span className='text-primary'>Archway</span>
+                        Velkommen til <span className='text-primary'>Archway</span>
                     </DialogTitle>
                     <DialogDescription className='text-muted-foreground text-sm leading-relaxed'>
-                        Upload at least{' '}
-                        <strong className='text-foreground'>10 images</strong>{' '}
-                        of your office's previous work. The AI will learn your
-                        firm's visual identity — materials, lighting,
-                        composition, and style.
+                        Last opp minst{' '}
+                        <strong className='text-foreground'>10 bilder</strong>{' '}
+                        av kontorets tidligere prosjekter. KI-modellen lærer kontorets 
+                        visuelle identitet - materialer, lyssetting, komposisjon og stil.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -101,10 +100,10 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
                             </div>
                             <div className='text-center'>
                                 <p className='text-sm font-medium text-foreground'>
-                                    Drop images here or click to browse
+                                    Slipp bilder her eller trykk for å laste opp
                                 </p>
                                 <p className='text-xs text-muted-foreground mt-1'>
-                                    PNG, JPG, WEBP — minimum 10 images required
+                                    PNG, JPG, WEBP — minimum 10 bilder kreves
                                 </p>
                             </div>
                         </div>
@@ -150,7 +149,7 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
                         <span
                             className={`text-sm font-medium ${canProceed ? 'text-primary' : 'text-muted-foreground'}`}
                         >
-                            {images.length} / 10 images
+                            {images.length} / 10 bilder
                         </span>
                         {canProceed && (
                             <Check className='h-4 w-4 text-primary' />
@@ -161,7 +160,7 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
                         disabled={!canProceed}
                         className='bg-primary hover:bg-primary/90 text-primary-foreground gap-2 px-6 cursor-pointer'
                     >
-                        Train Model
+                        Tren Modell
                         <ArrowRight className='h-4 w-4' />
                     </Button>
                 </div>

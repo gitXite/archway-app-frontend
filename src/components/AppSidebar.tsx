@@ -15,17 +15,12 @@ import {
 } from '@/components/ui/sidebar';
 
 const navItems = [
-    { title: 'Generate', url: '/', icon: Sparkles },
-    { title: 'Projects', url: '/projects', icon: FolderOpen },
-    { title: 'Training Data', url: '/training', icon: Database },
+    { title: 'Generering', url: '/', icon: Sparkles },
+    { title: 'Prosjekter', url: '/prosjekter', icon: FolderOpen },
+    { title: 'Treningsdata', url: '/trening', icon: Database },
 ];
 
-export function AppSidebar() {
-    const [pathname, setPathname] = useState('/');
-
-    useEffect(() => {
-        setPathname(window.location.pathname);
-    }, []);
+export function AppSidebar({ pathname }: { pathname: string }) {
 
     return (
         <Sidebar className='border-r-0 overflow-hidden'>

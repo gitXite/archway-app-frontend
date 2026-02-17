@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, X, ImagePlus, RefreshCw, Loader2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 interface TrainingImage {
     id: string;
@@ -49,7 +50,12 @@ export function TrainingPage() {
 
     const retrain = () => {
         setIsTraining(true);
-        setTimeout(() => setIsTraining(false), 4000);
+        setTimeout(() => {
+            setIsTraining(false);
+            toast.success('Modellen trenes på nytt!', {
+                description: 'Forventet treningstid: 1 time'
+            });
+        }, 4000);
     };
 
     const canTrain = images.length >= 10;
@@ -58,12 +64,12 @@ export function TrainingPage() {
         <div className='flex flex-col h-full'>
             <div className='px-8 pt-8 pb-4 flex items-start justify-between'>
                 <div>
-                    <h1 className='font-serif text-3xl text-foreground'>
-                        Training Data
+                    <h1 className='font-serif text-3xl text-foreground font-medium'>
+                        Treningsdata
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
-                        Manage the images used to train your LoRA model. Upload
-                        at least 10 images.
+                        Administrer bildene for å trene LoRA modellen på nytt. 
+                        Vennligst last opp <span className='font-bold'>minst</span> 10 høykvalitets bilder. 
                     </p>
                 </div>
                 <div className='flex gap-2'>
@@ -74,7 +80,7 @@ export function TrainingPage() {
                             className='rounded-full gap-2 border-border text-muted-foreground cursor-pointer'
                         >
                             <X className='h-4 w-4' />
-                            Clear All
+                            Fjern Alt
                         </Button>
                     )}
                     <Button
@@ -85,12 +91,12 @@ export function TrainingPage() {
                         {isTraining ? (
                             <>
                                 <Loader2 className='h-4 w-4 animate-spin' />
-                                Training...
+                                Trener...
                             </>
                         ) : (
                             <>
                                 <RefreshCw className='h-4 w-4' />
-                                Retrain Model
+                                Tren modellen på nytt
                             </>
                         )}
                     </Button>
@@ -103,12 +109,12 @@ export function TrainingPage() {
                     <span
                         className={`text-sm font-medium ${canTrain ? 'text-primary' : 'text-muted-foreground'}`}
                     >
-                        {images.length} images uploaded
+                        {images.length} bilder lastet opp
                     </span>
                     {canTrain && <Check className='h-4 w-4 text-primary' />}
                     {!canTrain && images.length > 0 && (
                         <span className='text-xs text-muted-foreground'>
-                            ({10 - images.length} more needed)
+                            ({10 - images.length} mangler)
                         </span>
                     )}
                 </div>
@@ -147,11 +153,10 @@ export function TrainingPage() {
                             </div>
                             <div className='text-center'>
                                 <p className='text-sm font-medium text-foreground'>
-                                    Drop images here or click to browse
+                                    Slipp bilder her eller trykk for å laste opp
                                 </p>
                                 <p className='text-xs text-muted-foreground mt-1'>
-                                    Upload 10+ images of previous projects to
-                                    train the model
+                                    Last opp 10+ bilder av tidligere prosjekter for å trene modellen
                                 </p>
                             </div>
                         </div>
