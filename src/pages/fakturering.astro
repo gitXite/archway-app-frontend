@@ -8,7 +8,7 @@ const pathname = Astro.url.pathname;
 ---
 
 <Layout title='Archway - Fakturering' description='Fakturering'>
-    <DashboardLayout pathname={pathname}>
+    <DashboardLayout pathname={pathname} client:load>
         <InvoicePage />
     </DashboardLayout>
 </Layout>

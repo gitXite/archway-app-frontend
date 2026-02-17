@@ -75,7 +75,7 @@ export function TrainingPage() {
                         Vennligst last opp <span className='font-bold'>minst</span> 10 høykvalitets bilder. 
                     </p>
                 </div>
-                <div className='flex gap-2'>
+                <div className='flex gap-2 max-sm:flex-col'>
                     {images.length > 0 && (
                         <Button
                             variant='outline'
@@ -83,7 +83,7 @@ export function TrainingPage() {
                             className='rounded-full gap-2 border-border text-muted-foreground cursor-pointer hover:bg-secondary'
                         >
                             <X className='h-4 w-4' />
-                            Fjern Alt
+                            Fjern Alle
                         </Button>
                     )}
                     <Button
@@ -99,7 +99,7 @@ export function TrainingPage() {
                         ) : (
                             <>
                                 <RefreshCw className='h-4 w-4' />
-                                Tren modellen på nytt
+                                Tren Modell
                             </>
                         )}
                     </Button>
