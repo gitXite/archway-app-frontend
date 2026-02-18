@@ -4,6 +4,8 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+@source "../node_modules/sonner/dist";
+
 @custom-variant dark (&:is(.dark *));
 
 /* Architectural theme - clean, sophisticated, monochromatic with warm stone accent */
