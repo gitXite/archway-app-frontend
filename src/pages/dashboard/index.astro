@@ -3,7 +3,6 @@ import Layout from '@/layouts/Layout.astro';
 
 import { GeneratePage } from '@/components/GeneratePage';
 import { DashboardLayout } from '@/components/DashboardLayout';
-import DashboardWithOnboarding from '@/components/Dashboard';
 
 import '@/styles/global.css';
 
@@ -12,7 +11,6 @@ const pathname = Astro.url.pathname;
 
 <Layout title='Archway - Dashboard' description='Dashboard'>
 	<DashboardLayout pathname={pathname} client:load>
-		<DashboardWithOnboarding client:load />
 		<GeneratePage client:load />
 	</DashboardLayout>
 </Layout>
