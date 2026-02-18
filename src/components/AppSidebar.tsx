@@ -1,4 +1,4 @@
-import { Sparkles, FolderOpen, Database, UsersRound, FileText } from 'lucide-react';
+import { Sparkles, FolderOpen, Database, UsersRound, FileText, Headset, Info } from 'lucide-react';
 import {
     Sidebar,
     SidebarContent,
@@ -26,13 +26,17 @@ import { navigate } from 'astro:transitions/client';
 import { useState } from 'react';
 
 const navItems = [
-    { title: 'Generering', url: '/', icon: Sparkles },
-    { title: 'Prosjekter', url: '/prosjekter', icon: FolderOpen },
-    { title: 'Treningsdata', url: '/trening', icon: Database },
+    { title: 'Generering', url: '/dashboard', icon: Sparkles },
+    { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen },
 ];
+const navItemsSupport = [
+    { title: 'Om Archway', url: '/dashboard/info', icon: Info },
+    { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset },
+]
 const navItemsAdmin = [
-    { title: 'Team', url: '/team', icon: UsersRound },
-    { title: 'Fakturering', url: '/fakturering', icon: FileText },
+    { title: 'Team', url: '/dashboard/team', icon: UsersRound },
+    { title: 'Fakturering', url: '/dashboard/fakturering', icon: FileText },
+    { title: 'Treningsdata', url: '/dashboard/trening', icon: Database },
 ];
 
 export function AppSidebar({ pathname }: { pathname: string }) {
@@ -41,14 +45,16 @@ export function AppSidebar({ pathname }: { pathname: string }) {
     return (
         <Sidebar className='border-r-0 overflow-hidden'>
             <SidebarHeader className='p-5'>
-                <div className='flex items-center gap-2.5'>
-                    <div className='h-8 w-8 rounded-lg flex items-center justify-center'>
-                        <img src='/images/archway-logo.webp' alt='Archway' />
+                <a href="/">
+                    <div className='flex items-center gap-2.5'>
+                        <div className='h-8 w-8 rounded-lg flex items-center justify-center'>
+                            <img src='/images/archway-logo.webp' alt='Archway' />
+                        </div>
+                        <span className='font-serif text-xl text-foreground tracking-tight'>
+                            Archway
+                        </span>
                     </div>
-                    <span className='font-serif text-xl text-foreground tracking-tight'>
-                        Archway
-                    </span>
-                </div>
+                </a>
             </SidebarHeader>
 
             <SidebarSeparator className='self-center' />
@@ -63,8 +69,8 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                         <SidebarMenu>
                             {navItems.map((item) => {
                                 const isActive =
-                                    item.url === '/'
-                                        ? pathname === '/'
+                                    item.url === '/dashboard'
+                                        ? pathname === '/dashboard'
                                         : pathname.startsWith(item.url);
 
                                 return (
@@ -92,8 +98,6 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                     </SidebarGroupContent>
                 </SidebarGroup>
 
-                
-
                 {isAdmin && (
                     <SidebarGroup>
                         <SidebarSeparator className='self-center mb-2' />
@@ -106,8 +110,8 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                             <SidebarMenu>
                                 {navItemsAdmin.map((item) => {
                                     const isActive =
-                                        item.url === '/'
-                                            ? pathname === '/'
+                                        item.url === '/dashboard'
+                                            ? pathname === '/dashboard'
                                             : pathname.startsWith(item.url);
 
                                     return (
@@ -135,10 +139,51 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                         </SidebarGroupContent>
                     </SidebarGroup>
                 )}
+
+                <SidebarGroup>
+                    <SidebarSeparator className='self-center mb-2' />
+
+                    <SidebarGroupLabel className='text-[11px] uppercase tracking-widest text-muted-foreground/60 font-sans font-medium'>
+                        Support
+                    </SidebarGroupLabel>
+
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {navItemsSupport.map((item) => {
+                                const isActive =
+                                    item.url === '/dashboard'
+                                        ? pathname === '/dashboard'
+                                        : pathname.startsWith(item.url);
+
+                                return (
+                                    <SidebarMenuItem key={item.title}>
+                                        <SidebarMenuButton
+                                            asChild
+                                            tooltip={item.title}
+                                        >
+                                            <a
+                                                href={item.url}
+                                                className={`flex items-center gap-2 px-2 py-1.5 rounded-md transition-colors ${
+                                                    isActive
+                                                        ? 'bg-secondary text-foreground font-medium'
+                                                        : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
+                                                }`}
+                                            >
+                                                <item.icon className='h-4 w-4' />
+                                                <span>{item.title}</span>
+                                            </a>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                );
+                            })}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
             </SidebarContent>
 
+            <SidebarSeparator className='self-center' />
+
             <SidebarFooter className='p-3'>
-                <SidebarSeparator className='self-center' />
                 <div className='flex items-center gap-3 px-2 py-2 mt-1'>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -158,7 +203,7 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                         <DropdownMenuContent className='w-32'>
                             <DropdownMenuGroup>
                                 <DropdownMenuItem>Profil</DropdownMenuItem>
-                                <DropdownMenuItem>Fakturering</DropdownMenuItem>
+                                <DropdownMenuItem>Placeholder</DropdownMenuItem>
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
