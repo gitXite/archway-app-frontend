@@ -8,7 +8,7 @@ const pathname = Astro.url.pathname;
 ---
 
 <Layout title='Archway - Prosjekter' description='Prosjekter'>
-    <DashboardLayout pathname={pathname} client:load>
+    <DashboardLayout transition:persist pathname={pathname} client:load>
         <ProjectsPage client:load />
     </DashboardLayout>
 </Layout>
