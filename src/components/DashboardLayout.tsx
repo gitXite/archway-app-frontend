@@ -6,6 +6,7 @@ import {
 } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { Toaster } from 'sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import DashboardWithOnboarding from '@/components/Dashboard';
 
 interface DashboardLayoutProps {
