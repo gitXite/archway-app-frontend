@@ -29,7 +29,9 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <TooltipProvider>
-      <slot />
+      <main>
+        <slot />
+      </main>
     </TooltipProvider>
   </body>
 </html>

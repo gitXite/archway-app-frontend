@@ -1,14 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+
 import { DashboardLayout } from '@/components/DashboardLayout';
-import { TeamPage } from '@/components/TeamPage';
-import '../styles/global.css';
+import { ContactPage } from '@/components/ContactPage';
+import '@/styles/global.css';
 
 const pathname = Astro.url.pathname;
 ---
 
-<Layout title='Archway - Team' description='Team'>
+<Layout title='Kontakt support' description='Kontakt support'>
     <DashboardLayout pathname={pathname} client:load>
-        <TeamPage />
+        <ContactPage />
     </DashboardLayout>
 </Layout>
