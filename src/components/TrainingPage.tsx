@@ -65,7 +65,7 @@ export function TrainingPage() {
 
     return (
         <div className='flex flex-col h-full'>
-            <div className='px-8 pt-8 pb-4 flex items-start justify-between'>
+            <div className='px-8 pt-8 pb-2 flex items-start justify-between'>
                 <div>
                     <h1 className='font-serif text-3xl text-foreground font-medium'>
                         Treningsdata

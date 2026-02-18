@@ -133,7 +133,7 @@ export function GeneratePage() {
     return (
         <div className='flex flex-col h-full'>
             {/* Header area */}
-            <div className='px-8 pt-8 pb-8'>
+            <div className='px-8 py-8'>
                 <h1 className='font-serif text-3xl text-foreground font-medium'>
                     Generering
                 </h1>
@@ -143,7 +143,7 @@ export function GeneratePage() {
                 </p>
 
                 <Combobox items={projects} onValueChange={(value) => setProject(value as string | null)}>
-                    <ComboboxInput placeholder='Velg et prosjekt' className={'w-50 my-2'} />
+                    <ComboboxInput placeholder='Velg et prosjekt' className={'w-50 my-4'} />
                     <ComboboxContent>
                         <ComboboxEmpty>Ingen prosjekter funnet</ComboboxEmpty>
                         <ComboboxList>

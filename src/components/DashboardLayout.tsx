@@ -13,6 +13,8 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children, pathname }: DashboardLayoutProps) {
+    // add user verification here to protect dashboard
+    
     return (
         <SidebarProvider>
             <div className='min-h-screen flex w-full'>
