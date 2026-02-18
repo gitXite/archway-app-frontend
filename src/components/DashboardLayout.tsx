@@ -28,7 +28,7 @@ export function DashboardLayout({ children, pathname }: DashboardLayoutProps) {
                         </header>
                         <main className='flex-1 overflow-auto'>{children}</main>
                         <Toaster position='top-center' />
-                        <DashboardWithOnboarding client:load />
+                        <DashboardWithOnboarding />
                     </SidebarInset>
                 </div>
             </SidebarProvider>
