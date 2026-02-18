@@ -87,6 +87,8 @@ export function ProjectsPage() {
     const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
     const [showNewShareDialog, setShowNewShareDialog] = useState(false);
     const [showNewRenameDialog, setShowNewRenameDialog] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [canDelete, setCanDelete] = useState(false);
     const [newName, setNewName] = useState('');
     const [selectedProject, setSelectedProject] = useState<Project | null>(
         null,
@@ -177,7 +179,7 @@ export function ProjectsPage() {
                             Renderinger vil havne her etter generering.
                         </p>
                         <p className='text-xs text-muted-foreground/70 mt-1'>
-                            Naviger til hovedsiden (Generering) og velg dette
+                            Naviger til Generering og velg dette
                             prosjektet som destinasjon.
                         </p>
                     </div>
@@ -188,7 +190,7 @@ export function ProjectsPage() {
 
     return (
         <div className='flex flex-col h-full'>
-            <div className='px-8 pt-8 pb-8 flex items-start justify-between'>
+            <div className='px-8 py-8 flex items-start justify-between'>
                 <div>
                     <h1 className='font-serif text-3xl text-foreground font-medium'>
                         Prosjekter
@@ -277,7 +279,12 @@ export function ProjectsPage() {
                                             <DropdownMenuItem
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    deleteProject(project.id);
+                                                    setProject(project.id)
+                                                    setShowConfirm(true);
+                                                    setCanDelete(false);
+                                                    const timer = setTimeout(() => {
+                                                        setCanDelete(true);
+                                                    }, 2000);
                                                 }}
                                                 className='text-destructive focus:text-destructive focus:bg-destructive/10 focus:cursor-pointer transition-colors'
                                             >
@@ -386,6 +393,35 @@ export function ProjectsPage() {
                             </Button>
                         </div>
                     </div>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog
+                open={showConfirm}
+                onOpenChange={setShowConfirm}
+            >
+                <DialogContent className='w-fit' showCloseButton={false}>
+                        <div className='flex justify-center gap-6'>
+                            <Button
+                                variant='ghost'
+                                onClick={() => setShowConfirm(false)}
+                                className='cursor-pointer hover:bg-secondary border'
+                            >
+                                Avbryt
+                            </Button>
+                            <Button
+                                variant='ghost'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setShowConfirm(false);
+                                    deleteProject(project);
+                                }}
+                                disabled={!canDelete}
+                                className='text-destructive hover:text-destructive hover:bg-destructive/10 border border-transparent hover:border-destructive/30 cursor-pointer'
+                            >
+                                Bekreft
+                            </Button>
+                        </div>
                 </DialogContent>
             </Dialog>
 
