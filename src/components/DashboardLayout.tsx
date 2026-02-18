@@ -8,7 +8,6 @@ import { AppSidebar } from '@/components/AppSidebar';
 import { Toaster } from 'sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import DashboardWithOnboarding from '@/components/Dashboard';
-import 'sonner/dist/index.css';
 
 interface DashboardLayoutProps {
     children: ReactNode;
