@@ -1,32 +1,464 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+    Plus,
+    Mail,
+    MoreHorizontal,
+    Shield,
+    User,
+    UserCog,
+    Trash2,
+    Clock,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { UserRoundPlus } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+} from '@/components/ui/dialog';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 
-import '@/styles/global.css';
+type Role = 'admin' | 'editor' | 'viewer';
+
+interface TeamMember {
+    id: string;
+    name: string;
+    email: string;
+    role: Role;
+    status: 'active' | 'pending';
+    joinedAt: string;
+}
+
+const initialMembers: TeamMember[] = [
+    {
+        id: '1',
+        name: 'John Doe',
+        email: 'john@studio.com',
+        role: 'admin',
+        status: 'active',
+        joinedAt: '2025-09-01',
+    },
+    {
+        id: '2',
+        name: 'Sarah Chen',
+        email: 'sarah@studio.com',
+        role: 'editor',
+        status: 'active',
+        joinedAt: '2025-10-15',
+    },
+    {
+        id: '3',
+        name: 'Alex Rivera',
+        email: 'alex@studio.com',
+        role: 'viewer',
+        status: 'active',
+        joinedAt: '2025-11-20',
+    },
+    {
+        id: '4',
+        name: '',
+        email: 'maya@external.com',
+        role: 'editor',
+        status: 'pending',
+        joinedAt: '2026-02-10',
+    },
+];
+
+const roleConfig: Record<
+    Role,
+    { label: string; icon: React.ElementType; color: string }
+> = {
+    admin: {
+        label: 'Admin',
+        icon: Shield,
+        color: 'bg-accent/10 text-accent border-accent/20',
+    },
+    editor: {
+        label: 'Editor',
+        icon: UserCog,
+        color: 'bg-primary/10 text-primary border-primary/20',
+    },
+    viewer: {
+        label: 'Viewer',
+        icon: User,
+        color: 'bg-muted text-muted-foreground border-border',
+    },
+};
 
 export function TeamPage() {
-    const [showNewTeamDialog, setShowNewTeamDialog] = useState(false);
+    const [members, setMembers] = useState<TeamMember[]>(initialMembers);
+    const [inviteOpen, setInviteOpen] = useState(false);
+    const [inviteEmail, setInviteEmail] = useState('');
+    const [inviteRole, setInviteRole] = useState<Role>('editor');
 
+    const handleInvite = () => {
+        if (!inviteEmail.trim()) return;
+        const newMember: TeamMember = {
+            id: Date.now().toString(),
+            name: '',
+            email: inviteEmail.trim(),
+            role: inviteRole,
+            status: 'pending',
+            joinedAt: new Date().toISOString().split('T')[0],
+        };
+        setMembers((prev) => [...prev, newMember]);
+        setInviteEmail('');
+        setInviteRole('editor');
+        setInviteOpen(false);
+    };
+
+    const handleRemove = (id: string) => {
+        setMembers((prev) => prev.filter((m) => m.id !== id));
+    };
+
+    const handleRoleChange = (id: string, role: Role) => {
+        setMembers((prev) =>
+            prev.map((m) => (m.id === id ? { ...m, role } : m)),
+        );
+    };
+
+    const activeCount = members.filter((m) => m.status === 'active').length;
+    const pendingCount = members.filter((m) => m.status === 'pending').length;
+
+    const getInitials = (name: string, email: string) => {
+        if (name)
+            return name
+                .split(' ')
+                .map((n) => n[0])
+                .join('')
+                .toUpperCase();
+        return email[0].toUpperCase();
+    };
 
     return (
-        <div className='flex flex-col h-full'>
-            <div className='px-8 pt-8 pb-4 flex items-start justify-between'>
+        <div className='p-6 md:p-10 max-w-5xl mx-auto space-y-8'>
+            <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className='flex flex-col sm:flex-row sm:items-end justify-between gap-4'
+            >
                 <div>
-                    <h1 className='font-serif text-3xl text-foreground font-medium'>
+                    <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                         Team
                     </h1>
-                    <p className='text-sm text-muted-foreground mt-1'>
-                        Administrer teamet og få oversikt over brukere.
+                    <p className='text-muted-foreground mt-1 text-sm'>
+                        Manage access and invite collaborators to your
+                        workspace.
                     </p>
                 </div>
                 <Button
-                    onClick={() => setShowNewTeamDialog(true)}
-                    className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full cursor-pointer'
+                    onClick={() => setInviteOpen(true)}
+                    className='gap-2 shrink-0'
                 >
-                    <UserRoundPlus className='h-4 w-4' />
-                    Nytt Medlem
+                    <Plus className='h-4 w-4' />
+                    Invite Member
                 </Button>
-            </div>
+            </motion.div>
+
+            {/* Summary cards */}
+            <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.05 }}
+                className='grid grid-cols-1 sm:grid-cols-3 gap-4'
+            >
+                <Card className='border-border/60'>
+                    <CardContent className='p-5'>
+                        <p className='text-xs uppercase tracking-widest text-muted-foreground font-medium'>
+                            Total Members
+                        </p>
+                        <p className='text-2xl font-serif font-semibold text-foreground mt-1'>
+                            {members.length}
+                        </p>
+                    </CardContent>
+                </Card>
+                <Card className='border-border/60'>
+                    <CardContent className='p-5'>
+                        <p className='text-xs uppercase tracking-widest text-muted-foreground font-medium'>
+                            Active
+                        </p>
+                        <p className='text-2xl font-serif font-semibold text-foreground mt-1'>
+                            {activeCount}
+                        </p>
+                    </CardContent>
+                </Card>
+                <Card className='border-border/60'>
+                    <CardContent className='p-5'>
+                        <p className='text-xs uppercase tracking-widest text-muted-foreground font-medium'>
+                            Pending Invites
+                        </p>
+                        <p className='text-2xl font-serif font-semibold text-accent mt-1'>
+                            {pendingCount}
+                        </p>
+                    </CardContent>
+                </Card>
+            </motion.div>
+
+            {/* Members table */}
+            <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+            >
+                <Card className='border-border/60 overflow-hidden'>
+                    <Table>
+                        <TableHeader>
+                            <TableRow className='hover:bg-transparent'>
+                                <TableHead className='w-[280px]'>
+                                    Member
+                                </TableHead>
+                                <TableHead>Role</TableHead>
+                                <TableHead className='hidden md:table-cell'>
+                                    Status
+                                </TableHead>
+                                <TableHead className='hidden md:table-cell'>
+                                    Joined
+                                </TableHead>
+                                <TableHead className='w-[50px]' />
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <AnimatePresence>
+                                {members.map((member) => {
+                                    const rc = roleConfig[member.role];
+                                    return (
+                                        <motion.tr
+                                            key={member.id}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            className='border-b transition-colors hover:bg-muted/30'
+                                        >
+                                            <TableCell>
+                                                <div className='flex items-center gap-3'>
+                                                    <Avatar className='h-8 w-8'>
+                                                        <AvatarFallback className='text-xs bg-secondary text-secondary-foreground'>
+                                                            {getInitials(
+                                                                member.name,
+                                                                member.email,
+                                                            )}
+                                                        </AvatarFallback>
+                                                    </Avatar>
+                                                    <div className='min-w-0'>
+                                                        <p className='text-sm font-medium text-foreground truncate'>
+                                                            {member.name ||
+                                                                'Invited User'}
+                                                        </p>
+                                                        <p className='text-xs text-muted-foreground truncate'>
+                                                            {member.email}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge
+                                                    variant='outline'
+                                                    className={`gap-1 text-xs font-normal ${rc.color}`}
+                                                >
+                                                    <rc.icon className='h-3 w-3' />
+                                                    {rc.label}
+                                                </Badge>
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                {member.status === 'pending' ? (
+                                                    <span className='flex items-center gap-1.5 text-xs text-accent'>
+                                                        <Clock className='h-3 w-3' />{' '}
+                                                        Pending
+                                                    </span>
+                                                ) : (
+                                                    <span className='text-xs text-muted-foreground'>
+                                                        Active
+                                                    </span>
+                                                )}
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell text-xs text-muted-foreground'>
+                                                {new Date(
+                                                    member.joinedAt,
+                                                ).toLocaleDateString('en-US', {
+                                                    month: 'short',
+                                                    day: 'numeric',
+                                                    year: 'numeric',
+                                                })}
+                                            </TableCell>
+                                            <TableCell>
+                                                {member.id !== '1' && (
+                                                    <DropdownMenu>
+                                                        <DropdownMenuTrigger
+                                                            asChild
+                                                        >
+                                                            <Button
+                                                                variant='ghost'
+                                                                size='icon'
+                                                                className='h-8 w-8'
+                                                            >
+                                                                <MoreHorizontal className='h-4 w-4' />
+                                                            </Button>
+                                                        </DropdownMenuTrigger>
+                                                        <DropdownMenuContent
+                                                            align='end'
+                                                            className='w-44'
+                                                        >
+                                                            <DropdownMenuItem
+                                                                onClick={() =>
+                                                                    handleRoleChange(
+                                                                        member.id,
+                                                                        'admin',
+                                                                    )
+                                                                }
+                                                            >
+                                                                <Shield className='h-3.5 w-3.5 mr-2' />{' '}
+                                                                Make Admin
+                                                            </DropdownMenuItem>
+                                                            <DropdownMenuItem
+                                                                onClick={() =>
+                                                                    handleRoleChange(
+                                                                        member.id,
+                                                                        'editor',
+                                                                    )
+                                                                }
+                                                            >
+                                                                <UserCog className='h-3.5 w-3.5 mr-2' />{' '}
+                                                                Make Editor
+                                                            </DropdownMenuItem>
+                                                            <DropdownMenuItem
+                                                                onClick={() =>
+                                                                    handleRoleChange(
+                                                                        member.id,
+                                                                        'viewer',
+                                                                    )
+                                                                }
+                                                            >
+                                                                <User className='h-3.5 w-3.5 mr-2' />{' '}
+                                                                Make Viewer
+                                                            </DropdownMenuItem>
+                                                            <DropdownMenuSeparator />
+                                                            <DropdownMenuItem
+                                                                onClick={() =>
+                                                                    handleRemove(
+                                                                        member.id,
+                                                                    )
+                                                                }
+                                                                className='text-destructive focus:text-destructive'
+                                                            >
+                                                                <Trash2 className='h-3.5 w-3.5 mr-2' />{' '}
+                                                                Remove
+                                                            </DropdownMenuItem>
+                                                        </DropdownMenuContent>
+                                                    </DropdownMenu>
+                                                )}
+                                            </TableCell>
+                                        </motion.tr>
+                                    );
+                                })}
+                            </AnimatePresence>
+                        </TableBody>
+                    </Table>
+                </Card>
+            </motion.div>
+
+            {/* Invite Dialog */}
+            <Dialog open={inviteOpen} onOpenChange={setInviteOpen}>
+                <DialogContent className='sm:max-w-md'>
+                    <DialogHeader>
+                        <DialogTitle className='font-serif'>
+                            Invite Team Member
+                        </DialogTitle>
+                        <DialogDescription>
+                            Send an invitation to join your workspace. They'll
+                            receive an email with login instructions.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className='space-y-4 py-2'>
+                        <div className='space-y-2'>
+                            <label className='text-sm font-medium text-foreground'>
+                                Email address
+                            </label>
+                            <div className='relative'>
+                                <Mail className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground' />
+                                <Input
+                                    type='email'
+                                    placeholder='colleague@company.com'
+                                    value={inviteEmail}
+                                    onChange={(e) =>
+                                        setInviteEmail(e.target.value)
+                                    }
+                                    className='pl-9'
+                                    onKeyDown={(e) =>
+                                        e.key === 'Enter' && handleInvite()
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <div className='space-y-2'>
+                            <label className='text-sm font-medium text-foreground'>
+                                Role
+                            </label>
+                            <Select
+                                value={inviteRole}
+                                onValueChange={(v) => setInviteRole(v as Role)}
+                            >
+                                <SelectTrigger>
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value='admin'>
+                                        Admin — Full access
+                                    </SelectItem>
+                                    <SelectItem value='editor'>
+                                        Editor — Can generate & manage projects
+                                    </SelectItem>
+                                    <SelectItem value='viewer'>
+                                        Viewer — Read-only access
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            variant='outline'
+                            onClick={() => setInviteOpen(false)}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            onClick={handleInvite}
+                            disabled={!inviteEmail.trim()}
+                        >
+                            Send Invite
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
