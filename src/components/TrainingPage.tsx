@@ -68,7 +68,7 @@ export function TrainingPage() {
             <div className='px-8 pt-8 pb-2 flex items-start justify-between'>
                 <div>
                     <h1 className='font-serif text-3xl text-foreground font-medium'>
-                        Treningsdata
+                        Modelltrening
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
                         Administrer bildene som brukes til å trene LoRA-modellen på nytt. Last opp <span className='font-bold'>minst</span> 10 bilder av høy kvalitet for best resultat. 
