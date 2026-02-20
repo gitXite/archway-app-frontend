@@ -111,8 +111,8 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                             <SidebarMenu>
                                 {navItemsAdmin.map((item) => {
                                     const isActive =
-                                        item.url === '/dashboard'
-                                            ? pathname === '/dashboard'
+                                        item.url === '/dashboard/info'
+                                            ? pathname === '/dashboard/info'
                                             : pathname.startsWith(item.url);
 
                                     return (
@@ -152,8 +152,8 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                         <SidebarMenu>
                             {navItemsSupport.map((item) => {
                                 const isActive =
-                                    item.url === '/dashboard'
-                                        ? pathname === '/dashboard'
+                                    item.url === '/dashboard/team'
+                                        ? pathname === '/dashboard/team'
                                         : pathname.startsWith(item.url);
 
                                 return (
