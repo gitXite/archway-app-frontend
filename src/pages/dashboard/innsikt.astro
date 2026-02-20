@@ -1,12 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import { DashboardLayout } from '@/components/DashboardLayout';
-import { InsightPage } from '@/components/InsightPage';
+import { InsightsPage } from '@/components/InsightsPage';
 import '@/styles/global.css';
 ---
 
 <Layout title='Archway - Innsikt' description='Få innsikt i hvordan Archway brukes'>
    <DashboardLayout client:load>
-        <InsightPage client:load />
+        <InsightsPage client:load />
     </DashboardLayout> 
 </Layout>

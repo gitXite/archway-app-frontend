@@ -1,12 +1,12 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { DashboardLayout } from '@/components/DashboardLayout';
-import { InvoicePage } from '@/components/InvoicePage';
+import { BillingPage } from '@/components/BillingPage';
 import '@/styles/global.css';
 ---
 
 <Layout title='Archway - Fakturering' description='Fakturering'>
     <DashboardLayout client:load>
-        <InvoicePage />
+        <BillingPage client:load />
     </DashboardLayout>
 </Layout>
