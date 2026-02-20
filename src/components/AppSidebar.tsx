@@ -1,4 +1,4 @@
-import { Sparkles, FolderOpen, Database, UsersRound, FileText, Headset, Info, Gauge } from 'lucide-react';
+import { Sparkles, FolderOpen, Database, UsersRound, Headset, Info, BarChart3, CreditCard } from 'lucide-react';
 import {
     Sidebar,
     SidebarContent,
@@ -35,9 +35,9 @@ const navItemsSupport = [
 ]
 const navItemsAdmin = [
     { title: 'Team', url: '/dashboard/team', icon: UsersRound },
-    { title: 'Innsikt', url: '/dashboard/innsikt', icon: Gauge },
-    { title: 'Fakturering', url: '/dashboard/fakturering', icon: FileText },
-    { title: 'Treningsdata', url: '/dashboard/trening', icon: Database },
+    { title: 'Innsikt', url: '/dashboard/innsikt', icon: BarChart3 },
+    { title: 'Modelltrening', url: '/dashboard/trening', icon: Database },
+    { title: 'Fakturering', url: '/dashboard/fakturering', icon: CreditCard },
 ];
 
 export function AppSidebar() {
@@ -50,7 +50,7 @@ export function AppSidebar() {
 
     return (
         <Sidebar className='border-r-0 overflow-hidden'>
-            <SidebarHeader className='p-5'>
+            <SidebarHeader className='p-5 bg-sidebar-background'>
                 <a href="/">
                     <div className='flex items-center gap-2.5'>
                         <div className='h-8 w-8 rounded-lg flex items-center justify-center'>
@@ -65,7 +65,7 @@ export function AppSidebar() {
 
             <SidebarSeparator className='self-center' />
 
-            <SidebarContent className='px-2 pt-2 overflow-hidden'>
+            <SidebarContent className='px-2 pt-2 overflow-hidden bg-sidebar-background'>
                 <SidebarGroup>
                     <SidebarGroupLabel className='text-[11px] uppercase tracking-widest text-muted-foreground/60 font-sans font-medium'>
                         Workspace
@@ -189,7 +189,7 @@ export function AppSidebar() {
 
             <SidebarSeparator className='self-center' />
 
-            <SidebarFooter className='p-3'>
+            <SidebarFooter className='p-3 bg-sidebar-background'>
                 <div className='flex items-center gap-3 px-2 py-2 mt-1'>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
