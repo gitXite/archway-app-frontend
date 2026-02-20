@@ -26,6 +26,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { toast } from 'sonner';
+import { TimerCountdown } from './TimerCountdown';
 
 interface Project {
     id: string;
@@ -116,13 +117,13 @@ export function ProjectsPage() {
 
     const renameProject = (id: string) => {
         if (!newName.trim()) return;
-        setProjects((prev) => (
-            prev.map((project) => (
+        setProjects((prev) =>
+            prev.map((project) =>
                 project.id === id
-                    ? {...project, name: newName.trim()}
-                    : project
-            ))
-        ));
+                    ? { ...project, name: newName.trim() }
+                    : project,
+            ),
+        );
 
         // rename into database
 
@@ -179,8 +180,8 @@ export function ProjectsPage() {
                             Renderinger vil havne her etter generering.
                         </p>
                         <p className='text-xs text-muted-foreground/70 mt-1'>
-                            Naviger til Generering og velg dette
-                            prosjektet som destinasjon.
+                            Naviger til Generering og velg dette prosjektet som
+                            destinasjon.
                         </p>
                     </div>
                 </div>
@@ -258,7 +259,9 @@ export function ProjectsPage() {
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     setProject(project.id);
-                                                    setShowNewRenameDialog(true);
+                                                    setShowNewRenameDialog(
+                                                        true,
+                                                    );
                                                 }}
                                                 className='text-foreground focus:bg-secondary focus:cursor-pointer transition-colors'
                                             >
@@ -279,12 +282,15 @@ export function ProjectsPage() {
                                             <DropdownMenuItem
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    setProject(project.id)
+                                                    setProject(project.id);
                                                     setShowConfirm(true);
                                                     setCanDelete(false);
-                                                    const timer = setTimeout(() => {
-                                                        setCanDelete(true);
-                                                    }, 2000);
+                                                    const timer = setTimeout(
+                                                        () => {
+                                                            setCanDelete(true);
+                                                        },
+                                                        2000,
+                                                    );
                                                 }}
                                                 className='text-destructive focus:text-destructive focus:bg-destructive/10 focus:cursor-pointer transition-colors'
                                             >
@@ -320,8 +326,7 @@ export function ProjectsPage() {
                             value={newName}
                             onChange={(e) => setNewName(e.target.value)}
                             onKeyDown={(e) =>
-                                e.key === 'Enter' &&
-                                renameProject(project)
+                                e.key === 'Enter' && renameProject(project)
                             }
                             className='bg-secondary/50 border-border'
                         />
@@ -396,19 +401,17 @@ export function ProjectsPage() {
                 </DialogContent>
             </Dialog>
 
-            <Dialog
-                open={showConfirm}
-                onOpenChange={setShowConfirm}
-            >
+            <Dialog open={showConfirm} onOpenChange={setShowConfirm}>
                 <DialogContent className='w-fit' showCloseButton={false}>
-                        <div className='flex justify-center gap-6'>
-                            <Button
-                                variant='ghost'
-                                onClick={() => setShowConfirm(false)}
-                                className='cursor-pointer hover:bg-secondary border'
-                            >
-                                Avbryt
-                            </Button>
+                    <div className='flex justify-center gap-6'>
+                        <Button
+                            variant='ghost'
+                            onClick={() => setShowConfirm(false)}
+                            className='cursor-pointer hover:bg-secondary border'
+                        >
+                            Avbryt
+                        </Button>
+                        <div className='flex flex-col'>
                             <Button
                                 variant='ghost'
                                 onClick={(e) => {
@@ -421,7 +424,11 @@ export function ProjectsPage() {
                             >
                                 Bekreft
                             </Button>
+                            {!canDelete && (
+                                <TimerCountdown initialDeciSeconds={20} />
+                            )}
                         </div>
+                    </div>
                 </DialogContent>
             </Dialog>
 
