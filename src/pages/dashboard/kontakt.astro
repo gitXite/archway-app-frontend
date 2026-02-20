@@ -4,12 +4,10 @@ import Layout from '@/layouts/Layout.astro';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { ContactPage } from '@/components/ContactPage';
 import '@/styles/global.css';
-
-const pathname = Astro.url.pathname;
 ---
 
 <Layout title='Kontakt support' description='Kontakt support'>
-    <DashboardLayout pathname={pathname} client:load>
+    <DashboardLayout pathname={Astro.url.pathname} client:load>
         <ContactPage />
     </DashboardLayout>
 </Layout>

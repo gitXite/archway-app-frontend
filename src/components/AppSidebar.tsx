@@ -1,4 +1,4 @@
-import { Sparkles, FolderOpen, Database, UsersRound, FileText, Headset, Info } from 'lucide-react';
+import { Sparkles, FolderOpen, Database, UsersRound, FileText, Headset, Info, Gauge } from 'lucide-react';
 import {
     Sidebar,
     SidebarContent,
@@ -35,6 +35,7 @@ const navItemsSupport = [
 ]
 const navItemsAdmin = [
     { title: 'Team', url: '/dashboard/team', icon: UsersRound },
+    { title: 'Innsikt', url: '/dashboard/innsikt', icon: Gauge },
     { title: 'Fakturering', url: '/dashboard/fakturering', icon: FileText },
     { title: 'Treningsdata', url: '/dashboard/trening', icon: Database },
 ];

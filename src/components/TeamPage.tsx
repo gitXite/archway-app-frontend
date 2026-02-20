@@ -16,7 +16,7 @@ export function TeamPage() {
                         Team
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
-                        Administrer teamet
+                        Administrer teamet og få oversikt over brukere.
                     </p>
                 </div>
                 <Button

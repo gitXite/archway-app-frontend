@@ -3,18 +3,16 @@ import Layout from '@/layouts/Layout.astro';
 
 import { DashboardLayout } from '@/components/DashboardLayout';
 import '@/styles/global.css';
-
-const pathname = Astro.url.pathname;
 ---
 
 <Layout title='Info' description='Info om Archway'>
-    <DashboardLayout pathname={pathname} client:load>
+    <DashboardLayout pathname={Astro.url.pathname} client:load>
         <div class='flex flex-col h-full'>
             <div class="px-8 py-8">
                 <h1 class="font-serif text-3xl text-foreground font-medium">
                     Om Archway
                 </h1>
-                <p class="text-sm text-muted-foreground mt-1 w-1/2">
+                <p class="text-sm text-muted-foreground mt-1 w-full md:w-1/2">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, numquam magni vitae, placeat odit quibusdam ea repellendus voluptatem exercitationem cupiditate aperiam in dicta sint, voluptatibus doloremque! Quidem repellat laboriosam saepe!
                 </p>
             </div>

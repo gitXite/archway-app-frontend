@@ -71,8 +71,7 @@ export function TrainingPage() {
                         Treningsdata
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
-                        Administrer bildene for å trene LoRA modellen på nytt. 
-                        Vennligst last opp <span className='font-bold'>minst</span> 10 høykvalitets bilder. 
+                        Administrer bildene som brukes til å trene LoRA-modellen på nytt. Last opp <span className='font-bold'>minst</span> 10 bilder av høy kvalitet for best resultat. 
                     </p>
                 </div>
                 <div className='flex gap-2 max-sm:flex-col'>

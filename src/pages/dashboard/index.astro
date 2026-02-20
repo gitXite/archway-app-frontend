@@ -3,14 +3,11 @@ import Layout from '@/layouts/Layout.astro';
 
 import { GeneratePage } from '@/components/GeneratePage';
 import { DashboardLayout } from '@/components/DashboardLayout';
-
 import '@/styles/global.css';
-
-const pathname = Astro.url.pathname;
 ---
 
 <Layout title='Archway - Dashboard' description='Dashboard'>
-	<DashboardLayout pathname={pathname} client:load>
+	<DashboardLayout pathname={Astro.url.pathname} client:load>
 		<GeneratePage client:load />
 	</DashboardLayout>
 </Layout>
