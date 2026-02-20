@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     FolderPlus,
@@ -96,6 +96,7 @@ export function ProjectsPage() {
     );
     const [sharedEmail, setSharedEmail] = useState('');
     const [project, setProject] = useState('');
+    const deleteTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const createProject = () => {
         if (!newName.trim()) return;
@@ -285,7 +286,10 @@ export function ProjectsPage() {
                                                     setProject(project.id);
                                                     setShowConfirm(true);
                                                     setCanDelete(false);
-                                                    const timer = setTimeout(
+
+                                                    if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
+
+                                                    deleteTimerRef.current = setTimeout(
                                                         () => {
                                                             setCanDelete(true);
                                                         },
@@ -406,7 +410,13 @@ export function ProjectsPage() {
                     <div className='flex justify-center gap-6'>
                         <Button
                             variant='ghost'
-                            onClick={() => setShowConfirm(false)}
+                            onClick={() => {
+                                setShowConfirm(false);
+                                if (deleteTimerRef.current) {
+                                    clearTimeout(deleteTimerRef.current);
+                                    deleteTimerRef.current = null;
+                                }
+                            }}
                             className='cursor-pointer hover:bg-secondary border'
                         >
                             Avbryt
