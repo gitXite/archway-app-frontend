@@ -308,7 +308,7 @@ export function BillingPage() {
                                                 {inv.date}
                                             </p>
                                         </div>
-                                        <div className='flex items-center gap-4'>
+                                        <div className='flex items-center gap-2 md:gap-4'>
                                             <p className='text-sm font-medium text-foreground'>
                                                 {inv.amount}
                                             </p>
