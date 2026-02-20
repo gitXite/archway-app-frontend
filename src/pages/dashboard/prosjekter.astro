@@ -6,7 +6,7 @@ import '@/styles/global.css';
 ---
 
 <Layout title='Archway - Prosjekter' description='Oversikt over prosjekter'>
-    <DashboardLayout transition:persist pathname={Astro.url.pathname} client:load>
+    <DashboardLayout transition:persist client:load>
         <ProjectsPage client:load />
     </DashboardLayout>
 </Layout>

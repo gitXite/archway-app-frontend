@@ -12,17 +12,16 @@ import "sonner/dist/styles.css";
 
 interface DashboardLayoutProps {
     children: ReactNode;
-    pathname: string;
 }
 
-export function DashboardLayout({ children, pathname }: DashboardLayoutProps) {
+export function DashboardLayout({ children }: DashboardLayoutProps) {
     // add user verification here to protect dashboard
     
     return (
         <TooltipProvider>
             <SidebarProvider>
                 <div className='min-h-screen flex w-full'>
-                    <AppSidebar pathname={pathname} />
+                    <AppSidebar />
                     <SidebarInset className='flex flex-col'>
                         <header className='h-14 flex items-center gap-3 px-6 border-b border-border/50'>
                             <SidebarTrigger className='text-muted-foreground hover:bg-secondary' />

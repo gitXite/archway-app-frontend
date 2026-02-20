@@ -6,7 +6,7 @@ import '@/styles/global.css';
 ---
 
 <Layout title='Archway - Modelltrening' description='Modelltrening'>
-    <DashboardLayout pathname={Astro.url.pathname} client:load>
+    <DashboardLayout client:load>
         <TrainingPage client:load />
     </DashboardLayout>
 </Layout>

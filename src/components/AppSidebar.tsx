@@ -23,7 +23,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { navigate } from 'astro:transitions/client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const navItems = [
     { title: 'Generering', url: '/dashboard', icon: Sparkles },
@@ -40,8 +40,13 @@ const navItemsAdmin = [
     { title: 'Treningsdata', url: '/dashboard/trening', icon: Database },
 ];
 
-export function AppSidebar({ pathname }: { pathname: string }) {
+export function AppSidebar() {
     const [isAdmin, setIsAdmin] = useState(true);
+    const [pathname, setPathname] = useState('');
+
+    useEffect(() => {
+        setPathname(window.location.pathname);
+    });
 
     return (
         <Sidebar className='border-r-0 overflow-hidden'>
@@ -111,8 +116,8 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                             <SidebarMenu>
                                 {navItemsAdmin.map((item) => {
                                     const isActive =
-                                        item.url === '/dashboard/info'
-                                            ? pathname === '/dashboard/info'
+                                        item.url === '/dashboard'
+                                            ? pathname === '/dashboard'
                                             : pathname.startsWith(item.url);
 
                                     return (
@@ -152,8 +157,8 @@ export function AppSidebar({ pathname }: { pathname: string }) {
                         <SidebarMenu>
                             {navItemsSupport.map((item) => {
                                 const isActive =
-                                    item.url === '/dashboard/team'
-                                        ? pathname === '/dashboard/team'
+                                    item.url === '/dashboard'
+                                        ? pathname === '/dashboard'
                                         : pathname.startsWith(item.url);
 
                                 return (

@@ -6,7 +6,7 @@ import '@/styles/global.css';
 ---
 
 <Layout title='Archway - Innsikt' description='Få innsikt i hvordan Archway brukes'>
-   <DashboardLayout pathname={Astro.url.pathname} client:load>
+   <DashboardLayout client:load>
         <InsightPage client:load />
     </DashboardLayout> 
 </Layout>
