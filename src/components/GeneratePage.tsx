@@ -132,9 +132,8 @@ export function GeneratePage() {
 
     return (
         <div className='flex flex-col h-full'>
-            {/* Header area */}
             <div className='px-8 py-8'>
-                <h1 className='font-serif text-3xl text-foreground font-medium'>
+                <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                     Generering
                 </h1>
                 <p className='text-sm text-muted-foreground mt-1'>
@@ -157,10 +156,8 @@ export function GeneratePage() {
                 </Combobox>
             </div>
 
-            {/* Main content */}
             <div className='flex-1 px-8 pb-16'>
                 <div className='max-w-5xl mx-auto'>
-                    {/* Upload zones */}
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
                         <ImageUploadZone
                             label='Input'
@@ -176,7 +173,6 @@ export function GeneratePage() {
                         />
                     </div>
 
-                    {/* Generate button — centered, Sora-inspired */}
                     <div className='flex justify-center mb-8'>
                         <Button
                             onClick={handleGenerate}
@@ -198,7 +194,6 @@ export function GeneratePage() {
                         </Button>
                     </div>
 
-                    {/* Output area */}
                     {(isGenerating || generatedImage) && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
