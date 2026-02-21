@@ -14,7 +14,7 @@ import { CreditCard, Download, Check, ArrowUpRight } from 'lucide-react';
 
 const plans = [
     {
-        name: 'Individer',
+        name: 'Individuell',
         price: 'NOK 499',
         period: '/mnd',
         description: 'For individuelle arkitekter.',
