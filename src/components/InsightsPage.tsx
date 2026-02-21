@@ -22,27 +22,27 @@ import { Image, Clock, TrendingUp, Zap } from 'lucide-react';
 
 const monthlyRenders = [
     { month: 'Sep', renders: 42 },
-    { month: 'Oct', renders: 68 },
+    { month: 'Okt', renders: 68 },
     { month: 'Nov', renders: 95 },
-    { month: 'Dec', renders: 78 },
+    { month: 'Des', renders: 78 },
     { month: 'Jan', renders: 124 },
     { month: 'Feb', renders: 156 },
 ];
 
 const timeSavedData = [
     { month: 'Sep', blender: 126, archway: 21 },
-    { month: 'Oct', blender: 204, archway: 34 },
+    { month: 'Okt', blender: 204, archway: 34 },
     { month: 'Nov', blender: 285, archway: 47.5 },
-    { month: 'Dec', blender: 234, archway: 39 },
+    { month: 'Des', blender: 234, archway: 39 },
     { month: 'Jan', blender: 372, archway: 62 },
     { month: 'Feb', blender: 468, archway: 78 },
 ];
 
 const projectBreakdown = [
-    { name: 'Residential', value: 45 },
-    { name: 'Commercial', value: 28 },
-    { name: 'Interior', value: 18 },
-    { name: 'Landscape', value: 9 },
+    { name: 'Bolig', value: 45 },
+    { name: 'Næring', value: 28 },
+    { name: 'Interiør', value: 18 },
+    { name: 'Landskap', value: 9 },
 ];
 
 const PIE_COLORS = [
@@ -53,7 +53,7 @@ const PIE_COLORS = [
 ];
 
 const renderChartConfig: ChartConfig = {
-    renders: { label: 'Renders', color: 'oklch(0.2376 0 0)' },
+    renders: { label: 'Renderinger', color: 'oklch(0.2376 0 0)' },
 };
 
 const timeChartConfig: ChartConfig = {
@@ -69,21 +69,21 @@ const stats = [
         icon: Image,
     },
     {
-        label: 'Hours Saved',
+        label: 'Timer Spart',
         value: '1,408',
         change: 'vs Blender avg',
         icon: Clock,
     },
     {
-        label: 'Avg. Render Time',
-        value: '28s',
-        change: '-12% this month',
+        label: 'Snitt Render Tid',
+        value: '15s',
+        change: '-12% denne måneden',
         icon: Zap,
     },
     {
-        label: 'Cost Efficiency',
+        label: 'Kostnadseffektivitet',
         value: '6.2×',
-        change: 'vs traditional',
+        change: 'vs tradisjonell',
         icon: TrendingUp,
     },
 ];
@@ -92,10 +92,10 @@ export function InsightsPage() {
     return (
         <div className='flex flex-col h-full'>
             <div className='px-8 py-8'>
-                <h1 className='font-serif text-3xl text-foreground font-medium'>
+                <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                     Innsikt
                 </h1>
-                <p className='text-sm text-muted-foreground mt-1'>
+                <p className='text-muted-foreground mt-1 text-sm'>
                     Få oversikt over bruk, ytelse og spart tid på tvers av arbeidsområdet ditt.
                 </p>
             </div>
@@ -134,13 +134,11 @@ export function InsightsPage() {
                         ))}
                     </div>
 
-                    {/* Charts row */}
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-                        {/* Monthly renders */}
                         <Card className='border-border/60'>
                             <CardHeader className='pb-2'>
                                 <CardTitle className='text-sm font-medium text-foreground'>
-                                    Monthly Renders
+                                    Månedlige Renderinger
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -177,11 +175,10 @@ export function InsightsPage() {
                             </CardContent>
                         </Card>
 
-                        {/* Time saved comparison */}
                         <Card className='border-border/60'>
                             <CardHeader className='pb-2'>
                                 <CardTitle className='text-sm font-medium text-foreground'>
-                                    Time Comparison — Blender vs Archway
+                                    Tidssammenligning - Blender vs Archway
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -228,13 +225,11 @@ export function InsightsPage() {
                         </Card>
                     </div>
 
-                    {/* Bottom row */}
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
-                        {/* Project type breakdown */}
                         <Card className='border-border/60'>
                             <CardHeader className='pb-2'>
                                 <CardTitle className='text-sm font-medium text-foreground'>
-                                    Renders by Category
+                                    Renderinger av Kategori
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className='flex items-center justify-center'>
@@ -295,50 +290,49 @@ export function InsightsPage() {
                             </div>
                         </Card>
 
-                        {/* Recent activity */}
                         <Card className='border-border/60 lg:col-span-2'>
                             <CardHeader className='pb-2'>
                                 <CardTitle className='text-sm font-medium text-foreground'>
-                                    Recent Activity
+                                    Nylig Aktivitet
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className='space-y-3'>
                                     {[
                                         {
-                                            action: 'Render completed',
-                                            project: 'Fjordheim Residence',
-                                            time: '12 min ago',
+                                            action: 'Render fullført',
+                                            project: 'Fjordheim Residens',
+                                            time: '12 min siden',
                                             duration: '24s',
                                         },
                                         {
-                                            action: 'Render completed',
-                                            project: 'Solstrand Office',
-                                            time: '1 hr ago',
+                                            action: 'Render fullført',
+                                            project: 'Solstrand Kontor',
+                                            time: '1 timer siden',
                                             duration: '31s',
                                         },
                                         {
-                                            action: 'LoRA retrained',
+                                            action: 'Trent LoRA',
                                             project: '—',
-                                            time: '3 hrs ago',
+                                            time: '3 timer siden',
                                             duration: '8 min',
                                         },
                                         {
-                                            action: 'Render completed',
-                                            project: 'Bryggen Cultural Center',
-                                            time: '5 hrs ago',
+                                            action: 'Render fullført',
+                                            project: 'Bryggen Kulturelle Senter',
+                                            time: '5 timer siden',
                                             duration: '27s',
                                         },
                                         {
-                                            action: 'New project created',
+                                            action: 'Nytt prosjekt',
                                             project: 'Vesterålen Cabin',
-                                            time: 'Yesterday',
+                                            time: 'I går',
                                             duration: '—',
                                         },
                                         {
-                                            action: 'Render completed',
-                                            project: 'Vesterålen Cabin',
-                                            time: 'Yesterday',
+                                            action: 'Render fullført',
+                                            project: 'Vesterålen Hytte',
+                                            time: 'I går',
                                             duration: '22s',
                                         },
                                     ].map((item, i) => (
