@@ -101,12 +101,12 @@ const roleConfig: Record<
         icon: Shield,
         color: 'bg-accent/10 text-accent border-accent/20',
     },
-    editor: {
+    redaktør: {
         label: 'Redaktør',
         icon: UserCog,
         color: 'bg-primary/10 text-primary border-primary/20',
     },
-    viewer: {
+    bruker: {
         label: 'Bruker',
         icon: User,
         color: 'bg-muted text-muted-foreground border-border',
