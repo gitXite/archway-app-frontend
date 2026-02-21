@@ -67,7 +67,7 @@ export function TrainingPage() {
         <div className='flex flex-col h-full'>
             <div className='px-8 pt-8 pb-2 flex items-start justify-between'>
                 <div>
-                    <h1 className='font-serif text-3xl text-foreground font-medium'>
+                    <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                         Modelltrening
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
