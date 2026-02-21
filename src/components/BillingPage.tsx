@@ -14,31 +14,31 @@ import { CreditCard, Download, Check, ArrowUpRight } from 'lucide-react';
 
 const plans = [
     {
-        name: 'Starter',
-        price: '€49',
-        period: '/mo',
-        description: 'For individual architects getting started.',
+        name: 'Individer',
+        price: 'NOK 499',
+        period: '/mnd',
+        description: 'For individuelle arkitekter.',
         features: [
-            '50 renders / month',
-            '1 LoRA model',
-            '3 projects',
+            '50 renderinger / mnd',
+            '1 LoRA modell',
+            '5 prosjekter',
             '720p output',
             'Email support',
         ],
         current: false,
     },
     {
-        name: 'Professional',
-        price: '€149',
-        period: '/mo',
-        description: 'For studios producing at scale.',
+        name: 'Profesjonell',
+        price: 'NOK 1499',
+        period: '/mnd',
+        description: 'For bedrifter og kontorer.',
         features: [
-            '500 renders / month',
-            '5 LoRA models',
-            'Unlimited projects',
+            'Ubegrensede renderinger',
+            '5 LoRA modeller',
+            'Ubegrensede prosjekter',
             '4K output',
-            'Priority support',
-            'API access',
+            'Email support',
+            'Admin tilgang',
         ],
         current: true,
     },
@@ -46,15 +46,14 @@ const plans = [
         name: 'Enterprise',
         price: 'Custom',
         period: '',
-        description: 'For large firms with custom needs.',
+        description: 'For større bedrifter med spesialtilpassede behov.',
         features: [
-            'Unlimited renders',
-            'Unlimited LoRA models',
-            'Unlimited projects',
-            '8K output',
-            'Dedicated support',
-            'Custom integrations',
-            'SLA guarantee',
+            'Ubegrensede Renderinger',
+            'Ubegrensede LoRA modeller',
+            'Ubegrensede prosjekter',
+            '4K output',
+            'Dedikert støtte',
+            'Custom integrasjoner',
         ],
         current: false,
     },
@@ -64,32 +63,32 @@ const invoices = [
     {
         id: 'INV-2025-006',
         date: 'Feb 1, 2025',
-        amount: '€149.00',
-        status: 'Paid',
+        amount: 'NOK 1499.00',
+        status: 'Betalt',
     },
     {
         id: 'INV-2025-005',
         date: 'Jan 1, 2025',
-        amount: '€149.00',
-        status: 'Paid',
+        amount: 'NÒK 1499.00',
+        status: 'Betalt',
     },
     {
         id: 'INV-2025-004',
-        date: 'Dec 1, 2024',
-        amount: '€149.00',
-        status: 'Paid',
+        date: 'Des 1, 2024',
+        amount: 'NOK 1499.00',
+        status: 'Betalt',
     },
     {
         id: 'INV-2025-003',
         date: 'Nov 1, 2024',
-        amount: '€49.00',
-        status: 'Paid',
+        amount: 'NOK 499.00',
+        status: 'Betalt',
     },
     {
         id: 'INV-2025-002',
-        date: 'Oct 1, 2024',
-        amount: '€49.00',
-        status: 'Paid',
+        date: 'Okt 1, 2024',
+        amount: 'NOK 499.00',
+        status: 'Betalt',
     },
 ];
 
@@ -101,11 +100,11 @@ export function BillingPage() {
     return (
         <div className='flex flex-col h-full'>
             <div className='px-8 py-8'>
-                <h1 className='font-medium font-serif text-3xl text-foreground'>
+                <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                     Fakturering
                 </h1>
                 <p className='text-sm text-muted-foreground mt-1'>
-                    Manage your subscription, usage, and invoices.
+                    Administrer abonnementet, bruken og fakturaene dine.
                 </p>
             </div>
 
@@ -118,17 +117,17 @@ export function BillingPage() {
                         <Card className='border-border/60'>
                             <CardHeader className='pb-3'>
                                 <CardTitle className='text-sm font-medium text-foreground'>
-                                    Current Usage
+                                    Nåværende Bruk
                                 </CardTitle>
                                 <CardDescription>
-                                    February 2025 billing cycle
+                                    Februar 2025 Faktureringssyklus
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className='space-y-4'>
                                 <div>
                                     <div className='flex justify-between text-sm mb-2'>
                                         <span className='text-muted-foreground'>
-                                            Renders
+                                            Renderinger
                                         </span>
                                         <span className='text-foreground font-medium'>
                                             {usedRenders} / {totalRenders}
@@ -142,7 +141,7 @@ export function BillingPage() {
                                 <div className='grid grid-cols-3 gap-4 pt-2'>
                                     <div>
                                         <p className='text-xs text-muted-foreground'>
-                                            LoRA Models
+                                            LoRA Modeller
                                         </p>
                                         <p className='text-lg font-semibold text-foreground'>
                                             2 / 5
@@ -150,7 +149,7 @@ export function BillingPage() {
                                     </div>
                                     <div>
                                         <p className='text-xs text-muted-foreground'>
-                                            Storage Used
+                                            Lagring
                                         </p>
                                         <p className='text-lg font-semibold text-foreground'>
                                             3.2 GB
@@ -158,7 +157,7 @@ export function BillingPage() {
                                     </div>
                                     <div>
                                         <p className='text-xs text-muted-foreground'>
-                                            Next Invoice
+                                            Neste Faktura
                                         </p>
                                         <p className='text-lg font-semibold text-foreground'>
                                             Mar 1
@@ -169,10 +168,9 @@ export function BillingPage() {
                         </Card>
                     </motion.div>
 
-                    {/* Plans */}
                     <div>
-                        <h2 className='font-serif text-xl text-foreground mb-4'>
-                            Plans
+                        <h2 className='font-serif text-xl text-foreground mb-4 font-medium'>
+                            Betalingsplaner
                         </h2>
                         <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                             {plans.map((plan, i) => (
@@ -199,7 +197,7 @@ export function BillingPage() {
                                                         variant='secondary'
                                                         className='text-xs'
                                                     >
-                                                        Current
+                                                        Nåværende
                                                     </Badge>
                                                 )}
                                             </div>
@@ -234,19 +232,19 @@ export function BillingPage() {
                                                         className='w-full'
                                                         disabled
                                                     >
-                                                        Current Plan
+                                                        Nåværende Plan
                                                     </Button>
                                                 ) : plan.price === 'Custom' ? (
                                                     <Button
                                                         variant='outline'
                                                         className='w-full gap-1.5 cursor-pointer'
                                                     >
-                                                        Contact Sales{' '}
+                                                        Kontakt Oss{' '}
                                                         <ArrowUpRight className='h-3.5 w-3.5' />
                                                     </Button>
                                                 ) : (
                                                     <Button className='w-full cursor-pointer'>
-                                                        Upgrade
+                                                        Velg
                                                     </Button>
                                                 )}
                                             </div>
@@ -257,11 +255,10 @@ export function BillingPage() {
                         </div>
                     </div>
 
-                    {/* Payment method */}
                     <Card className='border-border/60'>
                         <CardHeader className='pb-3'>
                             <CardTitle className='text-sm font-medium text-foreground'>
-                                Payment Method
+                                Betalingsmetode
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
@@ -275,22 +272,21 @@ export function BillingPage() {
                                             •••• •••• •••• 4242
                                         </p>
                                         <p className='text-xs text-muted-foreground'>
-                                            Expires 08/2027
+                                            Utgår 08/2027
                                         </p>
                                     </div>
                                 </div>
                                 <Button variant='outline' size='sm'>
-                                    Update
+                                    Oppdater
                                 </Button>
                             </div>
                         </CardContent>
                     </Card>
 
-                    {/* Invoice history */}
                     <Card className='border-border/60'>
                         <CardHeader className='pb-3'>
                             <CardTitle className='text-sm font-medium text-foreground'>
-                                Invoice History
+                                Fakturahistorikk
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
