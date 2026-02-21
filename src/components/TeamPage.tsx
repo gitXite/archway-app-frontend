@@ -46,14 +46,14 @@ import {
     TableRow,
 } from '@/components/ui/table';
 
-type Role = 'admin' | 'editor' | 'viewer';
+type Role = 'admin' | 'redaktør' | 'bruker';
 
 interface TeamMember {
     id: string;
     name: string;
     email: string;
     role: Role;
-    status: 'active' | 'pending';
+    status: 'aktiv' | 'pågående';
     joinedAt: string;
 }
 
@@ -63,31 +63,31 @@ const initialMembers: TeamMember[] = [
         name: 'John Doe',
         email: 'john@studio.com',
         role: 'admin',
-        status: 'active',
+        status: 'aktiv',
         joinedAt: '2025-09-01',
     },
     {
         id: '2',
         name: 'Sarah Chen',
         email: 'sarah@studio.com',
-        role: 'editor',
-        status: 'active',
+        role: 'redaktør',
+        status: 'aktiv',
         joinedAt: '2025-10-15',
     },
     {
         id: '3',
         name: 'Alex Rivera',
         email: 'alex@studio.com',
-        role: 'viewer',
-        status: 'active',
+        role: 'redaktør',
+        status: 'aktiv',
         joinedAt: '2025-11-20',
     },
     {
         id: '4',
         name: '',
         email: 'maya@external.com',
-        role: 'editor',
-        status: 'pending',
+        role: 'bruker',
+        status: 'pågående',
         joinedAt: '2026-02-10',
     },
 ];
@@ -102,12 +102,12 @@ const roleConfig: Record<
         color: 'bg-accent/10 text-accent border-accent/20',
     },
     editor: {
-        label: 'Editor',
+        label: 'Redaktør',
         icon: UserCog,
         color: 'bg-primary/10 text-primary border-primary/20',
     },
     viewer: {
-        label: 'Viewer',
+        label: 'Bruker',
         icon: User,
         color: 'bg-muted text-muted-foreground border-border',
     },
@@ -117,21 +117,22 @@ export function TeamPage() {
     const [members, setMembers] = useState<TeamMember[]>(initialMembers);
     const [inviteOpen, setInviteOpen] = useState(false);
     const [inviteEmail, setInviteEmail] = useState('');
-    const [inviteRole, setInviteRole] = useState<Role>('editor');
+    const [inviteRole, setInviteRole] = useState<Role>('bruker');
 
     const handleInvite = () => {
         if (!inviteEmail.trim()) return;
+        
         const newMember: TeamMember = {
             id: Date.now().toString(),
             name: '',
             email: inviteEmail.trim(),
             role: inviteRole,
-            status: 'pending',
+            status: 'pågående',
             joinedAt: new Date().toISOString().split('T')[0],
         };
         setMembers((prev) => [...prev, newMember]);
         setInviteEmail('');
-        setInviteRole('editor');
+        setInviteRole('bruker');
         setInviteOpen(false);
     };
 
@@ -145,8 +146,8 @@ export function TeamPage() {
         );
     };
 
-    const activeCount = members.filter((m) => m.status === 'active').length;
-    const pendingCount = members.filter((m) => m.status === 'pending').length;
+    const activeCount = members.filter((m) => m.status === 'aktiv').length;
+    const pendingCount = members.filter((m) => m.status === 'pågående').length;
 
     const getInitials = (name: string, email: string) => {
         if (name)
@@ -171,20 +172,18 @@ export function TeamPage() {
                         Team
                     </h1>
                     <p className='text-muted-foreground mt-1 text-sm'>
-                        Manage access and invite collaborators to your
-                        workspace.
+                        Administrer tilgang og brukere i arbeidsområdet.
                     </p>
                 </div>
                 <Button
                     onClick={() => setInviteOpen(true)}
-                    className='gap-2 shrink-0'
+                    className='gap-2 shrink-0 cursor-pointer'
                 >
                     <Plus className='h-4 w-4' />
-                    Invite Member
+                    Inviter Bruker
                 </Button>
             </motion.div>
 
-            {/* Summary cards */}
             <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -194,7 +193,7 @@ export function TeamPage() {
                 <Card className='border-border/60'>
                     <CardContent className='p-5'>
                         <p className='text-xs uppercase tracking-widest text-muted-foreground font-medium'>
-                            Total Members
+                            Antall Brukere
                         </p>
                         <p className='text-2xl font-serif font-semibold text-foreground mt-1'>
                             {members.length}
@@ -204,7 +203,7 @@ export function TeamPage() {
                 <Card className='border-border/60'>
                     <CardContent className='p-5'>
                         <p className='text-xs uppercase tracking-widest text-muted-foreground font-medium'>
-                            Active
+                            Aktive Brukere
                         </p>
                         <p className='text-2xl font-serif font-semibold text-foreground mt-1'>
                             {activeCount}
@@ -214,7 +213,7 @@ export function TeamPage() {
                 <Card className='border-border/60'>
                     <CardContent className='p-5'>
                         <p className='text-xs uppercase tracking-widest text-muted-foreground font-medium'>
-                            Pending Invites
+                            Pågående Invitasjoner
                         </p>
                         <p className='text-2xl font-serif font-semibold text-accent mt-1'>
                             {pendingCount}
@@ -223,7 +222,6 @@ export function TeamPage() {
                 </Card>
             </motion.div>
 
-            {/* Members table */}
             <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -234,14 +232,14 @@ export function TeamPage() {
                         <TableHeader>
                             <TableRow className='hover:bg-transparent'>
                                 <TableHead className='w-[280px]'>
-                                    Member
+                                    Bruker
                                 </TableHead>
-                                <TableHead>Role</TableHead>
+                                <TableHead>Rolle</TableHead>
                                 <TableHead className='hidden md:table-cell'>
                                     Status
                                 </TableHead>
                                 <TableHead className='hidden md:table-cell'>
-                                    Joined
+                                    Dato
                                 </TableHead>
                                 <TableHead className='w-[50px]' />
                             </TableRow>
@@ -271,7 +269,7 @@ export function TeamPage() {
                                                     <div className='min-w-0'>
                                                         <p className='text-sm font-medium text-foreground truncate'>
                                                             {member.name ||
-                                                                'Invited User'}
+                                                                'Invitert Bruker'}
                                                         </p>
                                                         <p className='text-xs text-muted-foreground truncate'>
                                                             {member.email}
@@ -289,14 +287,14 @@ export function TeamPage() {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell className='hidden md:table-cell'>
-                                                {member.status === 'pending' ? (
+                                                {member.status === 'pågående' ? (
                                                     <span className='flex items-center gap-1.5 text-xs text-accent'>
                                                         <Clock className='h-3 w-3' />{' '}
-                                                        Pending
+                                                        Pågående
                                                     </span>
                                                 ) : (
                                                     <span className='text-xs text-muted-foreground'>
-                                                        Active
+                                                        Aktiv
                                                     </span>
                                                 )}
                                             </TableCell>
@@ -336,29 +334,29 @@ export function TeamPage() {
                                                                 }
                                                             >
                                                                 <Shield className='h-3.5 w-3.5 mr-2' />{' '}
-                                                                Make Admin
+                                                                Tildel Admin
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem
                                                                 onClick={() =>
                                                                     handleRoleChange(
                                                                         member.id,
-                                                                        'editor',
+                                                                        'redaktør',
                                                                     )
                                                                 }
                                                             >
                                                                 <UserCog className='h-3.5 w-3.5 mr-2' />{' '}
-                                                                Make Editor
+                                                                Tildel Redaktør
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem
                                                                 onClick={() =>
                                                                     handleRoleChange(
                                                                         member.id,
-                                                                        'viewer',
+                                                                        'bruker',
                                                                     )
                                                                 }
                                                             >
                                                                 <User className='h-3.5 w-3.5 mr-2' />{' '}
-                                                                Make Viewer
+                                                                Tildel Bruker
                                                             </DropdownMenuItem>
                                                             <DropdownMenuSeparator />
                                                             <DropdownMenuItem
@@ -370,7 +368,7 @@ export function TeamPage() {
                                                                 className='text-destructive focus:text-destructive'
                                                             >
                                                                 <Trash2 className='h-3.5 w-3.5 mr-2' />{' '}
-                                                                Remove
+                                                                Fjern
                                                             </DropdownMenuItem>
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>
@@ -385,28 +383,27 @@ export function TeamPage() {
                 </Card>
             </motion.div>
 
-            {/* Invite Dialog */}
             <Dialog open={inviteOpen} onOpenChange={setInviteOpen}>
                 <DialogContent className='sm:max-w-md'>
                     <DialogHeader>
                         <DialogTitle className='font-serif'>
-                            Invite Team Member
+                            Inviter Teammedlem
                         </DialogTitle>
                         <DialogDescription>
-                            Send an invitation to join your workspace. They'll
-                            receive an email with login instructions.
+                            Send en invitasjon til å bli med arbeidsområdet. 
+                            De vil motta en email med login instruksjoner. 
                         </DialogDescription>
                     </DialogHeader>
                     <div className='space-y-4 py-2'>
                         <div className='space-y-2'>
                             <label className='text-sm font-medium text-foreground'>
-                                Email address
+                                Email adresse
                             </label>
                             <div className='relative'>
                                 <Mail className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground' />
                                 <Input
                                     type='email'
-                                    placeholder='colleague@company.com'
+                                    placeholder='kollega@bedrift.com'
                                     value={inviteEmail}
                                     onChange={(e) =>
                                         setInviteEmail(e.target.value)
@@ -420,7 +417,7 @@ export function TeamPage() {
                         </div>
                         <div className='space-y-2'>
                             <label className='text-sm font-medium text-foreground'>
-                                Role
+                                Rolle
                             </label>
                             <Select
                                 value={inviteRole}
@@ -431,13 +428,13 @@ export function TeamPage() {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value='admin'>
-                                        Admin — Full access
+                                        Admin - Full tilgang
                                     </SelectItem>
-                                    <SelectItem value='editor'>
-                                        Editor — Can generate & manage projects
+                                    <SelectItem value='redaktør'>
+                                        Redaktør - Kan invitere & administrere brukere
                                     </SelectItem>
-                                    <SelectItem value='viewer'>
-                                        Viewer — Read-only access
+                                    <SelectItem value='bruker'>
+                                        Bruker - Basis-tilgang
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
@@ -448,13 +445,13 @@ export function TeamPage() {
                             variant='outline'
                             onClick={() => setInviteOpen(false)}
                         >
-                            Cancel
+                            Avbryt
                         </Button>
                         <Button
                             onClick={handleInvite}
                             disabled={!inviteEmail.trim()}
                         >
-                            Send Invite
+                            Send Invitasjon
                         </Button>
                     </DialogFooter>
                 </DialogContent>
