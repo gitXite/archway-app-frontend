@@ -198,8 +198,8 @@ export function BillingPage() {
                                                 </CardTitle>
                                                 {plan.current && (
                                                     <Badge
-                                                        variant='secondary'
-                                                        className='text-xs bg-accent/90'
+                                                        variant='outline'
+                                                        className='text-xs bg-accent/10 text-accent border-accent/20'
                                                     >
                                                         Nåværende
                                                     </Badge>

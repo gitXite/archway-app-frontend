@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import {
     Dialog,
@@ -54,6 +54,7 @@ interface TeamMember {
     email: string;
     role: Role;
     status: 'aktiv' | 'pågående';
+    avatar?: string;
     joinedAt: string;
 }
 
@@ -64,6 +65,7 @@ const initialMembers: TeamMember[] = [
         email: 'john@studio.com',
         role: 'admin',
         status: 'aktiv',
+        avatar: 'https://github.com/gitXite.png',
         joinedAt: '2025-09-01',
     },
     {
@@ -254,6 +256,7 @@ export function TeamPage() {
                                             <TableCell>
                                                 <div className='flex items-center gap-3'>
                                                     <Avatar className='h-8 w-8'>
+                                                        <AvatarImage src={member.avatar} />
                                                         <AvatarFallback className='text-xs bg-secondary text-secondary-foreground'>
                                                             {getInitials(
                                                                 member.name,
@@ -312,7 +315,7 @@ export function TeamPage() {
                                                             <Button
                                                                 variant='ghost'
                                                                 size='icon'
-                                                                className='h-8 w-8'
+                                                                className='h-8 w-8 hover:bg-secondary'
                                                             >
                                                                 <MoreHorizontal className='h-4 w-4' />
                                                             </Button>
@@ -328,6 +331,7 @@ export function TeamPage() {
                                                                         'admin',
                                                                     )
                                                                 }
+                                                                className='cursor-pointer'
                                                             >
                                                                 <Shield className='h-3.5 w-3.5 mr-2' />{' '}
                                                                 Tildel Admin
@@ -339,6 +343,7 @@ export function TeamPage() {
                                                                         'redaktør',
                                                                     )
                                                                 }
+                                                                className='cursor-pointer'
                                                             >
                                                                 <UserCog className='h-3.5 w-3.5 mr-2' />{' '}
                                                                 Tildel Redaktør
@@ -350,6 +355,7 @@ export function TeamPage() {
                                                                         'bruker',
                                                                     )
                                                                 }
+                                                                className='cursor-pointer'
                                                             >
                                                                 <User className='h-3.5 w-3.5 mr-2' />{' '}
                                                                 Tildel Bruker
@@ -361,9 +367,9 @@ export function TeamPage() {
                                                                         member.id,
                                                                     )
                                                                 }
-                                                                className='text-destructive focus:text-destructive'
+                                                                className='cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/10'
                                                             >
-                                                                <Trash2 className='h-3.5 w-3.5 mr-2' />{' '}
+                                                                <Trash2 className='h-3.5 w-3.5 mr-2 text-destructive' />{' '}
                                                                 Fjern
                                                             </DropdownMenuItem>
                                                         </DropdownMenuContent>
@@ -441,12 +447,14 @@ export function TeamPage() {
                         <Button
                             variant='outline'
                             onClick={() => setInviteOpen(false)}
+                            className='cursor-pointer hover:bg-secondary'
                         >
                             Avbryt
                         </Button>
                         <Button
                             onClick={handleInvite}
                             disabled={!inviteEmail.trim()}
+                            className='cursor-pointer'
                         >
                             Send Invitasjon
                         </Button>
