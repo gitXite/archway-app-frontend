@@ -91,17 +91,18 @@ const stats = [
 export function InsightsPage() {
     return (
         <div className='flex flex-col h-full'>
-            <div className='px-8 py-8'>
-                <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
-                    Innsikt
-                </h1>
-                <p className='text-muted-foreground mt-1 text-sm'>
-                    Få oversikt over bruk, ytelse og spart tid på tvers av arbeidsområdet ditt.
-                </p>
-            </div>
-
             <div className='flex-1 px-8 pb-8 overflow-auto'>
-                <div className='max-w-6xl mx-auto space-y-6'>
+                <div className='max-w-6xl mx-auto space-y-8'>
+                    <div className='pt-8'>
+                        <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
+                            Innsikt
+                        </h1>
+                        <p className='text-muted-foreground mt-1 text-sm'>
+                            Få oversikt over bruk, ytelse og spart tid på tvers
+                            av arbeidsområdet ditt.
+                        </p>
+                    </div>
+
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
                         {stats.map((stat, i) => (
                             <motion.div
@@ -319,7 +320,8 @@ export function InsightsPage() {
                                         },
                                         {
                                             action: 'Render fullført',
-                                            project: 'Bryggen Kulturelle Senter',
+                                            project:
+                                                'Bryggen Kulturelle Senter',
                                             time: '5 timer siden',
                                             duration: '27s',
                                         },

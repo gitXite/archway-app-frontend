@@ -121,7 +121,7 @@ export function TeamPage() {
 
     const handleInvite = () => {
         if (!inviteEmail.trim()) return;
-        
+
         const newMember: TeamMember = {
             id: Date.now().toString(),
             name: '',
@@ -161,12 +161,7 @@ export function TeamPage() {
 
     return (
         <div className='p-6 md:p-10 max-w-5xl mx-auto space-y-8'>
-            <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className='flex flex-col sm:flex-row sm:items-end justify-between gap-4'
-            >
+            <div className='flex flex-col sm:flex-row sm:items-end justify-between gap-4'>
                 <div>
                     <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                         Team
@@ -182,7 +177,7 @@ export function TeamPage() {
                     <Plus className='h-4 w-4' />
                     Inviter Bruker
                 </Button>
-            </motion.div>
+            </div>
 
             <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -287,7 +282,8 @@ export function TeamPage() {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell className='hidden md:table-cell'>
-                                                {member.status === 'pågående' ? (
+                                                {member.status ===
+                                                'pågående' ? (
                                                     <span className='flex items-center gap-1.5 text-xs text-accent'>
                                                         <Clock className='h-3 w-3' />{' '}
                                                         Pågående
@@ -390,8 +386,8 @@ export function TeamPage() {
                             Inviter Teammedlem
                         </DialogTitle>
                         <DialogDescription>
-                            Send en invitasjon til å bli med arbeidsområdet. 
-                            De vil motta en email med login instruksjoner. 
+                            Send en invitasjon til å bli med arbeidsområdet. De
+                            vil motta en email med login instruksjoner.
                         </DialogDescription>
                     </DialogHeader>
                     <div className='space-y-4 py-2'>
@@ -431,7 +427,8 @@ export function TeamPage() {
                                         Admin - Full tilgang
                                     </SelectItem>
                                     <SelectItem value='redaktør'>
-                                        Redaktør - Kan invitere & administrere brukere
+                                        Redaktør - Kan invitere & administrere
+                                        brukere
                                     </SelectItem>
                                     <SelectItem value='bruker'>
                                         Bruker - Basis-tilgang

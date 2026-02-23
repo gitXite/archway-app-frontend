@@ -69,7 +69,7 @@ const invoices = [
     {
         id: 'INV-2025-005',
         date: 'Jan 1, 2025',
-        amount: 'NÒK 1499.00',
+        amount: 'NOK 1499.00',
         status: 'Betalt',
     },
     {
@@ -99,17 +99,17 @@ export function BillingPage() {
 
     return (
         <div className='flex flex-col h-full'>
-            <div className='px-8 py-8'>
-                <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
-                    Fakturering
-                </h1>
-                <p className='text-sm text-muted-foreground mt-1'>
-                    Administrer abonnementet, bruken og fakturaene dine.
-                </p>
-            </div>
-
             <div className='px-8 pb-8 overflow-auto'>
                 <div className='max-w-5xl mx-auto space-y-8'>
+                    <div className='pt-8'>
+                        <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
+                            Fakturering
+                        </h1>
+                        <p className='text-sm text-muted-foreground mt-1'>
+                            Administrer abonnementet, bruken og fakturaene dine.
+                        </p>
+                    </div>
+
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -169,9 +169,13 @@ export function BillingPage() {
                     </motion.div>
 
                     <div>
-                        <h2 className='font-serif text-xl text-foreground mb-4 font-medium'>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className='font-serif text-xl text-foreground mb-4 font-medium'
+                        >
                             Betalingsplaner
-                        </h2>
+                        </motion.h2>
                         <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                             {plans.map((plan, i) => (
                                 <motion.div
@@ -195,7 +199,7 @@ export function BillingPage() {
                                                 {plan.current && (
                                                     <Badge
                                                         variant='secondary'
-                                                        className='text-xs'
+                                                        className='text-xs bg-accent/90'
                                                     >
                                                         Nåværende
                                                     </Badge>
@@ -237,7 +241,7 @@ export function BillingPage() {
                                                 ) : plan.price === 'Custom' ? (
                                                     <Button
                                                         variant='outline'
-                                                        className='w-full gap-1.5 cursor-pointer'
+                                                        className='w-full gap-1.5 hover:bg-secondary cursor-pointer'
                                                     >
                                                         Kontakt Oss{' '}
                                                         <ArrowUpRight className='h-3.5 w-3.5' />
@@ -276,7 +280,11 @@ export function BillingPage() {
                                         </p>
                                     </div>
                                 </div>
-                                <Button variant='outline' size='sm'>
+                                <Button
+                                    variant='outline'
+                                    size='sm'
+                                    className='hover:bg-secondary cursor-pointer'
+                                >
                                     Oppdater
                                 </Button>
                             </div>
@@ -317,7 +325,7 @@ export function BillingPage() {
                                             <Button
                                                 variant='ghost'
                                                 size='icon'
-                                                className='h-8 w-8'
+                                                className='h-8 w-8 max-sm:hidden hover:bg-secondary cursor-pointer'
                                             >
                                                 <Download className='h-3.5 w-3.5' />
                                             </Button>

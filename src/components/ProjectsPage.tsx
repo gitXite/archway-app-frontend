@@ -53,8 +53,7 @@ const demoProjects: Project[] = [
 const itemVariants = {
     initial: {
         opacity: 0,
-        y: 14,
-        scale: 0.97,
+        y: 17,
         filter: 'blur(4px)',
     },
     animate: {
@@ -74,7 +73,6 @@ const itemVariants = {
     exit: {
         opacity: 0,
         x: -50,
-        scale: 0.92,
         filter: 'blur(4px)',
         transition: {
             duration: 0.2,

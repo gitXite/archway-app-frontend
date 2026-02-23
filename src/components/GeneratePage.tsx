@@ -101,12 +101,20 @@ function ImageUploadZone({
     );
 }
 
+const categories: string[] = [
+    'Bolig',
+    'Næring',
+    'Interiør',
+    'Landskap'
+];
+
 export function GeneratePage() {
     const [inputImage, setInputImage] = useState<string | null>(null);
     const [referenceImage, setReferenceImage] = useState<string | null>(null);
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedImage, setGeneratedImage] = useState<string | null>(null);
     const [project, setProject] = useState<string | null>(null);
+    const [category, setCategory] = useState<string | null>(null);
 
     const handleInputSelect = (file: File) => {
         setInputImage(URL.createObjectURL(file));
@@ -124,7 +132,9 @@ export function GeneratePage() {
         setTimeout(() => {
             setIsGenerating(false);
             setGeneratedImage(inputImage); // placeholder — would be API result
-            toast.success('Din render er klar!');
+            toast.success('Render fullført', {
+                description: project,
+            });
         }, 3000);
     };
 
@@ -141,19 +151,34 @@ export function GeneratePage() {
                     generere en render.
                 </p>
 
-                <Combobox items={projects} onValueChange={(value) => setProject(value as string | null)}>
-                    <ComboboxInput placeholder='Velg et prosjekt' className={'w-50 my-4'} />
-                    <ComboboxContent>
-                        <ComboboxEmpty>Ingen prosjekter funnet</ComboboxEmpty>
-                        <ComboboxList>
-                            {(prosjekt: string) => (
-                                <ComboboxItem key={prosjekt} value={prosjekt}>
-                                    {prosjekt}
-                                </ComboboxItem>
-                            )}
-                        </ComboboxList>
-                    </ComboboxContent>
-                </Combobox>
+                <div className='flex flex-col sm:flex-row gap-0 sm:gap-6'>
+                    <Combobox items={projects} onValueChange={(value) => setProject(value as string | null)}>
+                        <ComboboxInput placeholder='Velg et prosjekt' className={'w-50 my-4'} />
+                        <ComboboxContent>
+                            <ComboboxEmpty>Ingen prosjekter funnet</ComboboxEmpty>
+                            <ComboboxList>
+                                {(prosjekt: string) => (
+                                    <ComboboxItem key={prosjekt} value={prosjekt}>
+                                        {prosjekt}
+                                    </ComboboxItem>
+                                )}
+                            </ComboboxList>
+                        </ComboboxContent>
+                    </Combobox>
+                    <Combobox items={categories} onValueChange={(value) => setCategory(value as string | null)}>
+                        <ComboboxInput placeholder='Velg en kategori' className={'w-50 my-4'} />
+                        <ComboboxContent>
+                            <ComboboxEmpty>Ingen kategorier funnet</ComboboxEmpty>
+                            <ComboboxList>
+                                {(category: string) => (
+                                    <ComboboxItem key={category} value={category}>
+                                        {category}
+                                    </ComboboxItem>
+                                )}
+                            </ComboboxList>
+                        </ComboboxContent>
+                    </Combobox>
+                </div>
             </div>
 
             <div className='flex-1 px-8 pb-16'>
