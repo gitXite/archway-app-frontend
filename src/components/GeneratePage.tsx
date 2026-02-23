@@ -10,7 +10,9 @@ import {
     ComboboxInput,
     ComboboxItem,
     ComboboxList,
+    ComboboxValue,
 } from '@/components/ui/combobox';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 interface ImageUploadZoneProps {
     label: string;
@@ -144,7 +146,7 @@ export function GeneratePage() {
         <div className='flex flex-col h-full'>
             <div className='px-8 py-8'>
                 <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
-                    Generering
+                    Rendering
                 </h1>
                 <p className='text-sm text-muted-foreground mt-1'>
                     Last opp en input-tegning og et referansebilde for å
