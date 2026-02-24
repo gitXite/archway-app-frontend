@@ -340,7 +340,7 @@ export function TeamPage() {
                                                                 onClick={() =>
                                                                     handleRoleChange(
                                                                         member.id,
-                                                                        'redaktør',
+                                                                        'moderator',
                                                                     )
                                                                 }
                                                                 className='cursor-pointer'
