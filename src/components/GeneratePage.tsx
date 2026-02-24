@@ -168,7 +168,7 @@ export function GeneratePage() {
                         </ComboboxContent>
                     </Combobox>
                     <Combobox items={categories} onValueChange={(value) => setCategory(value as string | null)}>
-                        <ComboboxInput placeholder='Velg en kategori' className={'w-50 my-4'} />
+                        <ComboboxInput placeholder='Velg en kategori' className={'w-50 mb-4 md:my-4'} />
                         <ComboboxContent>
                             <ComboboxEmpty>Ingen kategorier funnet</ComboboxEmpty>
                             <ComboboxList>
