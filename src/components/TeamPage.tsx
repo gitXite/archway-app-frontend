@@ -432,7 +432,7 @@ export function TeamPage() {
                                     <SelectItem value='admin'>
                                         Admin - Full tilgang
                                     </SelectItem>
-                                    <SelectItem value='redaktør'>
+                                    <SelectItem value='moderator'>
                                         Moderator - Kan invitere brukere
                                     </SelectItem>
                                     <SelectItem value='bruker'>
