@@ -103,7 +103,7 @@ const roleConfig: Record<
         icon: Shield,
         color: 'bg-accent/10 text-accent border-accent/20',
     },
-    redaktør: {
+    moderator: {
         label: 'Moderator',
         icon: UserCog,
         color: 'bg-primary/10 text-primary border-primary/20',
