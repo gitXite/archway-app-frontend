@@ -46,7 +46,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 
-type Role = 'admin' | 'redaktør' | 'bruker';
+type Role = 'admin' | 'moderator' | 'bruker';
 
 interface TeamMember {
     id: string;
@@ -72,7 +72,7 @@ const initialMembers: TeamMember[] = [
         id: '2',
         name: 'Sarah Chen',
         email: 'sarah@studio.com',
-        role: 'redaktør',
+        role: 'moderator',
         status: 'aktiv',
         joinedAt: '2025-10-15',
     },
@@ -80,7 +80,7 @@ const initialMembers: TeamMember[] = [
         id: '3',
         name: 'Alex Rivera',
         email: 'alex@studio.com',
-        role: 'redaktør',
+        role: 'bruker',
         status: 'aktiv',
         joinedAt: '2025-11-20',
     },
@@ -104,7 +104,7 @@ const roleConfig: Record<
         color: 'bg-accent/10 text-accent border-accent/20',
     },
     redaktør: {
-        label: 'Redaktør',
+        label: 'Moderator',
         icon: UserCog,
         color: 'bg-primary/10 text-primary border-primary/20',
     },
@@ -346,7 +346,7 @@ export function TeamPage() {
                                                                 className='cursor-pointer'
                                                             >
                                                                 <UserCog className='h-3.5 w-3.5 mr-2' />{' '}
-                                                                Tildel Redaktør
+                                                                Tildel Moderator
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem
                                                                 onClick={() =>
@@ -433,8 +433,7 @@ export function TeamPage() {
                                         Admin - Full tilgang
                                     </SelectItem>
                                     <SelectItem value='redaktør'>
-                                        Redaktør - Kan invitere & administrere
-                                        brukere
+                                        Moderator - Kan invitere brukere
                                     </SelectItem>
                                     <SelectItem value='bruker'>
                                         Bruker - Basis-tilgang
