@@ -141,7 +141,7 @@ export function ProjectsPage() {
     const shareProject = (id: string, user: string) => {
         if (!sharedEmail.trim()) return;
         // share project with another user
-        toast.success('Prosjekt delt med bruker:', {
+        toast.success('Prosjekt delt', {
             description: sharedEmail,
         });
 
