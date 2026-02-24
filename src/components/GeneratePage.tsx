@@ -104,7 +104,7 @@ function ImageUploadZone({
 }
 
 const categories: string[] = [
-    'Bolig',
+    'Bolig (LoRA)',
     'Næring',
     'Interiør',
     'Landskap'
@@ -116,7 +116,7 @@ export function GeneratePage() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedImage, setGeneratedImage] = useState<string | null>(null);
     const [project, setProject] = useState<string | null>(null);
-    const [category, setCategory] = useState<string | null>(null);
+    const [category, setCategory] = useState<string | null>(categories[0]);
 
     const handleInputSelect = (file: File) => {
         setInputImage(URL.createObjectURL(file));
