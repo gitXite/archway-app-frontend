@@ -180,7 +180,7 @@ export function ProjectsPage() {
                             Renderinger vil havne her etter generering.
                         </p>
                         <p className='text-xs text-muted-foreground/70 mt-1'>
-                            Naviger til Generering og velg dette prosjektet som
+                            Naviger til Rendering og velg dette prosjektet som
                             destinasjon.
                         </p>
                     </div>
