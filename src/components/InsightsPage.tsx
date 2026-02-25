@@ -125,7 +125,7 @@ export function InsightsPage() {
                                                     {stat.change}
                                                 </p>
                                             </div>
-                                            <div className='h-9 w-9 rounded-xl bg-secondary flex items-center justify-center'>
+                                            <div className='h-10 w-10 rounded-xl bg-secondary flex items-center justify-center'>
                                                 <stat.icon className='h-4 w-4 text-muted-foreground' />
                                             </div>
                                         </div>
