@@ -12,7 +12,13 @@ import {
     ComboboxList,
     ComboboxValue,
 } from '@/components/ui/combobox';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from './ui/select';
 
 interface ImageUploadZoneProps {
     label: string;
@@ -23,7 +29,7 @@ interface ImageUploadZoneProps {
 
 const projects: string[] = [
     'Villa Nordstrand',
-    'Kontorbygg Aker Brygge'
+    'Kontorbygg Aker Brygge',
 ] as const;
 
 function ImageUploadZone({
@@ -103,12 +109,7 @@ function ImageUploadZone({
     );
 }
 
-const categories: string[] = [
-    'Bolig (LoRA)',
-    'Næring',
-    'Interiør',
-    'Landskap'
-];
+const categories: string[] = ['Bolig (LoRA)', 'Næring', 'Interiør', 'Landskap'];
 
 export function GeneratePage() {
     const [inputImage, setInputImage] = useState<string | null>(null);
@@ -140,7 +141,8 @@ export function GeneratePage() {
         }, 3000);
     };
 
-    const canGenerate = inputImage && referenceImage && !isGenerating && project;
+    const canGenerate =
+        inputImage && referenceImage && !isGenerating && project;
 
     return (
         <div className='flex flex-col h-full'>
@@ -154,26 +156,53 @@ export function GeneratePage() {
                 </p>
 
                 <div className='flex flex-col sm:flex-row gap-0 sm:gap-6'>
-                    <Combobox items={projects} onValueChange={(value) => setProject(value as string | null)}>
-                        <ComboboxInput placeholder='Velg et prosjekt' className={'w-50 my-4'} />
+                    <Combobox
+                        items={projects}
+                        onValueChange={(value) =>
+                            setProject(value as string | null)
+                        }
+                    >
+                        <ComboboxInput
+                            placeholder='Velg et prosjekt'
+                            className={'w-50 my-4'}
+                        />
                         <ComboboxContent>
-                            <ComboboxEmpty>Ingen prosjekter funnet</ComboboxEmpty>
+                            <ComboboxEmpty>
+                                Ingen prosjekter funnet
+                            </ComboboxEmpty>
                             <ComboboxList>
                                 {(prosjekt: string) => (
-                                    <ComboboxItem key={prosjekt} value={prosjekt}>
+                                    <ComboboxItem
+                                        key={prosjekt}
+                                        value={prosjekt}
+                                    >
                                         {prosjekt}
                                     </ComboboxItem>
                                 )}
                             </ComboboxList>
                         </ComboboxContent>
                     </Combobox>
-                    <Combobox items={categories} onValueChange={(value) => setCategory(value as string | null)}>
-                        <ComboboxInput placeholder='Velg en kategori' className={'w-50 mb-4 md:my-4'} />
+                    <Combobox
+                        items={categories}
+                        defaultValue={category}
+                        onValueChange={(value) =>
+                            setCategory(value as string | null)
+                        }
+                    >
+                        <ComboboxInput
+                            placeholder='Velg en kategori'
+                            className={'w-50 mb-4 md:my-4'}
+                        />
                         <ComboboxContent>
-                            <ComboboxEmpty>Ingen kategorier funnet</ComboboxEmpty>
+                            <ComboboxEmpty>
+                                Ingen kategorier funnet
+                            </ComboboxEmpty>
                             <ComboboxList>
                                 {(category: string) => (
-                                    <ComboboxItem key={category} value={category}>
+                                    <ComboboxItem
+                                        key={category}
+                                        value={category}
+                                    >
                                         {category}
                                     </ComboboxItem>
                                 )}

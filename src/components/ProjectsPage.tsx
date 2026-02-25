@@ -9,6 +9,7 @@ import {
     ChevronLeft,
     Share,
     Edit,
+    Mail,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -369,17 +370,20 @@ export function ProjectsPage() {
                         </DialogDescription>
                     </DialogHeader>
                     <div className='space-y-4 mt-2'>
-                        <Input
-                            placeholder='Email'
-                            type='email'
-                            value={sharedEmail}
-                            onChange={(e) => setSharedEmail(e.target.value)}
-                            onKeyDown={(e) =>
-                                e.key === 'Enter' &&
-                                shareProject(project, sharedEmail)
-                            }
-                            className='bg-secondary/50 border-border'
-                        />
+                        <div className='relative'>
+                            <Mail className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground' />
+                            <Input
+                                placeholder='Email'
+                                type='email'
+                                value={sharedEmail}
+                                onChange={(e) => setSharedEmail(e.target.value)}
+                                onKeyDown={(e) =>
+                                    e.key === 'Enter' &&
+                                    shareProject(project, sharedEmail)
+                                }
+                                className='bg-secondary/50 border-border pl-9'
+                            />
+                        </div>
                         <div className='flex justify-end gap-2'>
                             <Button
                                 variant='ghost'
