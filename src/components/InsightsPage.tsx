@@ -63,14 +63,14 @@ const timeChartConfig: ChartConfig = {
 
 const stats = [
     {
-        label: 'Totale renderinger',
+        label: 'Antall renderinger',
         value: '563',
-        change: '+26%',
+        change: '+26% denne måneden',
         icon: Image,
     },
     {
         label: 'Timer Spart',
-        value: '1,408',
+        value: '1689',
         change: 'vs Blender avg',
         icon: Clock,
     },
