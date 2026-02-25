@@ -30,7 +30,7 @@ const navItems = [
     { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen },
 ];
 const navItemsSupport = [
-    { title: 'Om Archway', url: '/dashboard/info', icon: Info },
+    { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: Info },
     { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset },
 ]
 const navItemsAdmin = [
