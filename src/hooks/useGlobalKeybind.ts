@@ -2,17 +2,18 @@ import { useEffect } from 'react';
 
 export function useGlobalKeybind(
     keys: (e: KeyboardEvent) => boolean,
-    callback: () => void
+    callback: () => void,
 ) {
     useEffect(() => {
-        const handler = (e: KeyboardEvent) => {            
+        const handler = (e: KeyboardEvent) => {
+            if (
+                document.activeElement instanceof HTMLTextAreaElement ||
+                document.activeElement instanceof HTMLInputElement
+            ) {
+                return;
+            }
+            
             if (keys(e)) {
-                if (
-                    document.activeElement instanceof HTMLTextAreaElement ||
-                    document.activeElement instanceof HTMLInputElement
-                ) {
-                    return;
-                }
                 e.preventDefault();
                 callback();
             }
