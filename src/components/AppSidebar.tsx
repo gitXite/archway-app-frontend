@@ -1,4 +1,4 @@
-import { Sparkles, FolderOpen, Database, UsersRound, Headset, Info, BarChart3, CreditCard } from 'lucide-react';
+import { Sparkles, FolderOpen, Database, UsersRound, Headset, BookOpen, BarChart3, CreditCard } from 'lucide-react';
 import {
     Sidebar,
     SidebarContent,
@@ -30,7 +30,7 @@ const navItems = [
     { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen },
 ];
 const navItemsSupport = [
-    { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: Info },
+    { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: BookOpen },
     { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset },
 ]
 const navItemsAdmin = [
