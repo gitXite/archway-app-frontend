@@ -55,8 +55,8 @@ export function TrainingPage() {
         setIsTraining(true);
         setTimeout(() => {
             setIsTraining(false);
-            toast.success('Modellen trenes på nytt!', {
-                description: 'Forventet treningstid: 1 time'
+            toast.success('Modelltrening startet...', {
+                description: 'Forventet tid: 1 time'
             });
         }, 4000);
     };
@@ -64,14 +64,14 @@ export function TrainingPage() {
     const canTrain = images.length >= 10;
 
     return (
-        <div className='flex flex-col h-full'>
-            <div className='px-8 pt-8 pb-2 flex items-start justify-between'>
+        <div className='p-6 md:p-10 md:px-15 mx-auto space-y-4'>
+            <div className='flex flex-col sm:flex-row sm:items-end justify-between gap-4'>
                 <div>
                     <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                         Modelltrening
                     </h1>
-                    <p className='text-sm text-muted-foreground mt-1'>
-                        Administrer bildene som brukes til å trene LoRA-modellen på nytt. Last opp <span className='font-bold'>minst</span> 10 bilder av høy kvalitet for best resultat. 
+                    <p className='text-muted-foreground mt-1 text-sm'>
+                        Administrer bildene som brukes til å trene LoRA-modellen på nytt. Last opp <span className='font-bold'>mellom 10-50</span> bilder av høy kvalitet for best resultat. 
                     </p>
                 </div>
                 <div className='flex gap-2 max-sm:flex-col'>
@@ -79,7 +79,7 @@ export function TrainingPage() {
                         <Button
                             variant='outline'
                             onClick={clearAll}
-                            className='rounded-full gap-2 border-border text-muted-foreground cursor-pointer hover:bg-secondary'
+                            className='gap-2 border-border text-muted-foreground cursor-pointer hover:bg-secondary'
                         >
                             <X className='h-4 w-4' />
                             Fjern Alle
@@ -88,7 +88,7 @@ export function TrainingPage() {
                     <Button
                         onClick={retrain}
                         disabled={!canTrain || isTraining}
-                        className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full cursor-pointer'
+                        className='bg-foreground hover:bg-foreground/90 text-background gap-2 cursor-pointer'
                     >
                         {isTraining ? (
                             <>
@@ -105,7 +105,7 @@ export function TrainingPage() {
                 </div>
             </div>
 
-            <div className='flex-1 px-8 pb-8'>
+            <div className='flex-1 pb-8'>
                 {/* Status bar */}
                 <div className='flex items-center gap-2 mb-8'>
                     <span

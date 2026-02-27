@@ -145,8 +145,8 @@ export function GeneratePage() {
         inputImage && referenceImage && !isGenerating && project;
 
     return (
-        <div className='flex flex-col h-full'>
-            <div className='px-8 py-8'>
+        <div className='p-6 md:p-10 md:px-15 mx-auto space-y-4'>
+            <div className='pb-2'>
                 <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                     Rendering
                 </h1>
@@ -191,7 +191,7 @@ export function GeneratePage() {
                     >
                         <ComboboxInput
                             placeholder='Velg en kategori'
-                            className={'w-50 mb-4 md:my-4'}
+                            className={'w-50 mb-4 sm:my-4'}
                         />
                         <ComboboxContent>
                             <ComboboxEmpty>
@@ -213,8 +213,8 @@ export function GeneratePage() {
             </div>
 
             <div className='flex-1 px-8 pb-16'>
-                <div className='max-w-5xl mx-auto'>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
+                <div className='md:px-35 mx-auto'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-10 mb-6'>
                         <ImageUploadZone
                             label='Input'
                             sublabel='Fasade, tegning, eller sketch'

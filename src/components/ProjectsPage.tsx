@@ -190,26 +190,26 @@ export function ProjectsPage() {
     }
 
     return (
-        <div className='flex flex-col h-full'>
-            <div className='px-8 py-8 flex items-start justify-between'>
+        <div className='p-6 md:p-10 mx-auto md:px-15 space-y-8'>
+            <div className='flex flex-col sm:flex-row sm:items-end justify-between gap-4'>
                 <div>
                     <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
                         Prosjekter
                     </h1>
-                    <p className='text-sm text-muted-foreground mt-1'>
+                    <p className='text-muted-foreground mt-1 text-sm'>
                         Organiser dine renderinger i prosjektmapper.
                     </p>
                 </div>
                 <Button
                     onClick={() => setShowNewProjectDialog(true)}
-                    className='bg-foreground hover:bg-foreground/90 text-background gap-2 rounded-full cursor-pointer'
+                    className='gap-2 shrink-0 cursor-pointer'
                 >
                     <FolderPlus className='h-4 w-4' />
                     Nytt Prosjekt
                 </Button>
             </div>
 
-            <div className='flex-1 px-8 pb-8'>
+            <div className='flex-1 pb-8'>
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                     <AnimatePresence mode='sync'>
                         {projects.map((project) => (
