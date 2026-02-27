@@ -26,18 +26,18 @@ import { navigate } from 'astro:transitions/client';
 import { useEffect, useState } from 'react';
 
 const navItems = [
-    { title: 'Rendering', url: '/dashboard', icon: Sparkles },
-    { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen },
+    { title: 'Rendering', url: '/dashboard', icon: Sparkles, shortcut: '⌘' },
+    { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen, shortcut: '⌘' },
 ];
 const navItemsSupport = [
-    { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: BookOpen },
-    { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset },
+    { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: BookOpen, shortcut: '⌘' },
+    { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset, shortcut: '⌘' },
 ]
 const navItemsAdmin = [
-    { title: 'Team', url: '/dashboard/team', icon: UsersRound },
-    { title: 'Innsikt', url: '/dashboard/innsikt', icon: BarChart3 },
-    { title: 'Modelltrening', url: '/dashboard/trening', icon: Database },
-    { title: 'Fakturering', url: '/dashboard/fakturering', icon: CreditCard },
+    { title: 'Team', url: '/dashboard/team', icon: UsersRound, shortcut: '⌘' },
+    { title: 'Innsikt', url: '/dashboard/innsikt', icon: BarChart3, shortcut: '⌘' },
+    { title: 'Modelltrening', url: '/dashboard/trening', icon: Database, shortcut: '⌘' },
+    { title: 'Fakturering', url: '/dashboard/fakturering', icon: CreditCard, shortcut: '⌘' },
 ];
 
 export function AppSidebar() {
@@ -95,6 +95,7 @@ export function AppSidebar() {
                                             >
                                                 <item.icon className='h-4 w-4' />
                                                 <span>{item.title}</span>
+                                                <span className='text-muted-foreground/50'>{item.shortcut}</span>
                                             </a>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
@@ -136,6 +137,7 @@ export function AppSidebar() {
                                                 >
                                                     <item.icon className='h-4 w-4' />
                                                     <span>{item.title}</span>
+                                                    <span className='text-muted-foreground/50'>{item.shortcut}</span>
                                                 </a>
                                             </SidebarMenuButton>
                                         </SidebarMenuItem>
@@ -177,6 +179,7 @@ export function AppSidebar() {
                                             >
                                                 <item.icon className='h-4 w-4' />
                                                 <span>{item.title}</span>
+                                                <span className='text-muted-foreground/50'>{item.shortcut}</span>
                                             </a>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
