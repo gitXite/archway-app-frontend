@@ -23,8 +23,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 <div className='min-h-screen flex w-full'>
                     <AppSidebar />
                     <SidebarInset className='flex flex-col'>
-                        <header className='h-14 flex items-center gap-3 px-6 border-b border-border/50'>
+                        <header className='h-14 flex items-center gap-1 px-6 border-b border-border/50'>
                             <SidebarTrigger className='text-muted-foreground hover:bg-secondary' />
+                            <span className='text-muted-foreground/50 text-sm pointer-events-none'>⌘+B</span>
                         </header>
                         <main className='flex-1 overflow-auto'>{children}</main>
                         <Toaster position='top-center' />

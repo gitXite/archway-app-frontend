@@ -26,18 +26,18 @@ import { navigate } from 'astro:transitions/client';
 import { useEffect, useState } from 'react';
 
 const navItems = [
-    { title: 'Rendering', url: '/dashboard', icon: Sparkles, shortcut: '⌘' },
-    { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen, shortcut: '⌘' },
+    { title: 'Rendering', url: '/dashboard', icon: Sparkles, shortcut: '' },
+    { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen, shortcut: '' },
 ];
 const navItemsSupport = [
-    { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: BookOpen, shortcut: '⌘' },
-    { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset, shortcut: '⌘' },
+    { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: BookOpen, shortcut: '' },
+    { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset },
 ]
 const navItemsAdmin = [
-    { title: 'Team', url: '/dashboard/team', icon: UsersRound, shortcut: '⌘' },
-    { title: 'Innsikt', url: '/dashboard/innsikt', icon: BarChart3, shortcut: '⌘' },
-    { title: 'Modelltrening', url: '/dashboard/trening', icon: Database, shortcut: '⌘' },
-    { title: 'Fakturering', url: '/dashboard/fakturering', icon: CreditCard, shortcut: '⌘' },
+    { title: 'Team', url: '/dashboard/team', icon: UsersRound },
+    { title: 'Innsikt', url: '/dashboard/innsikt', icon: BarChart3, shortcut: '' },
+    { title: 'Modelltrening', url: '/dashboard/trening', icon: Database },
+    { title: 'Fakturering', url: '/dashboard/fakturering', icon: CreditCard },
 ];
 
 export function AppSidebar() {
@@ -87,7 +87,7 @@ export function AppSidebar() {
                                         >
                                             <a
                                                 href={item.url}
-                                                className={`flex items-center gap-2 px-2 py-1.5 rounded-md transition-colors ${
+                                                className={`flex items-center relative gap-2 px-2 py-1.5 rounded-md transition-colors ${
                                                     isActive
                                                         ? 'bg-secondary text-foreground font-medium'
                                                         : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
@@ -95,7 +95,7 @@ export function AppSidebar() {
                                             >
                                                 <item.icon className='h-4 w-4' />
                                                 <span>{item.title}</span>
-                                                <span className='text-muted-foreground/50'>{item.shortcut}</span>
+                                                <span className='text-muted-foreground/50 absolute right-2'>{item.shortcut}</span>
                                             </a>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
@@ -129,7 +129,7 @@ export function AppSidebar() {
                                             >
                                                 <a
                                                     href={item.url}
-                                                    className={`flex items-center gap-2 px-2 py-1.5 rounded-md transition-colors ${
+                                                    className={`flex items-center relative gap-2 px-2 py-1.5 rounded-md transition-colors ${
                                                         isActive
                                                             ? 'bg-secondary text-foreground font-medium'
                                                             : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
@@ -137,7 +137,7 @@ export function AppSidebar() {
                                                 >
                                                     <item.icon className='h-4 w-4' />
                                                     <span>{item.title}</span>
-                                                    <span className='text-muted-foreground/50'>{item.shortcut}</span>
+                                                    <span className='text-muted-foreground/50 absolute right-2'>{item.shortcut}</span>
                                                 </a>
                                             </SidebarMenuButton>
                                         </SidebarMenuItem>
@@ -171,7 +171,7 @@ export function AppSidebar() {
                                         >
                                             <a
                                                 href={item.url}
-                                                className={`flex items-center gap-2 px-2 py-1.5 rounded-md transition-colors ${
+                                                className={`flex items-center relative gap-2 px-2 py-1.5 rounded-md transition-colors ${
                                                     isActive
                                                         ? 'bg-secondary text-foreground font-medium'
                                                         : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
@@ -179,7 +179,7 @@ export function AppSidebar() {
                                             >
                                                 <item.icon className='h-4 w-4' />
                                                 <span>{item.title}</span>
-                                                <span className='text-muted-foreground/50'>{item.shortcut}</span>
+                                                <span className='text-muted-foreground/50 absolute right-2'>{item.shortcut}</span>
                                             </a>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>

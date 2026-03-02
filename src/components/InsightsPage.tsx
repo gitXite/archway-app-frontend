@@ -46,10 +46,10 @@ const projectBreakdown = [
 ];
 
 const PIE_COLORS = [
-    'oklch(0.2376 0 0)',
-    'oklch(0.5547 0 0)',
-    'oklch(0.9234 0 0)',
-    'oklch(0.5982 0 0)',
+    'oklch(0.828 0.0352 52.98)',
+    'oklch(0.9301 0.0286 128.81)',
+    'oklch(0.8497 0.0973 124.2)',
+    'oklch(0.7585 0.0806 128.73)',
 ];
 
 const renderChartConfig: ChartConfig = {
