@@ -1,9 +1,12 @@
 ---
+import ContactPage from '@/components/ContactPage';
 import Layout from '@/layouts/Layout.astro';
+import { Toaster } from 'sonner';
 import '@/styles/global.css';
 ---
 
 
 <Layout title='Kontakt oss' description='Kontakt oss'>
-    
+    <Toaster position='top-center' client:load />
+    <ContactPage client:load />
 </Layout>
