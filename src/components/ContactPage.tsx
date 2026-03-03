@@ -174,7 +174,7 @@ export default function ContactPage() {
                                             <Input
                                                 id='email'
                                                 type='email'
-                                                placeholder='kollega@bedrift.com'
+                                                placeholder='eksempel@domene.com'
                                                 value={form.email}
                                                 onChange={(e) =>
                                                     handleChange(
