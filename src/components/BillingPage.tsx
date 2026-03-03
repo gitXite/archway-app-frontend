@@ -36,6 +36,7 @@ const plans = [
             'Ubegrensede renderinger',
             '5 LoRA modeller',
             'Ubegrensede prosjekter',
+            'Opptil 30 brukere',
             '4K output',
             'Email support',
             'Admin tilgang',
@@ -44,16 +45,17 @@ const plans = [
     },
     {
         name: 'Enterprise',
-        price: 'Custom',
+        price: 'Kontakt salg',
         period: '',
         description: 'For større bedrifter med spesialtilpassede behov.',
         features: [
             'Ubegrensede Renderinger',
             'Ubegrensede LoRA modeller',
             'Ubegrensede prosjekter',
+            'Ubegrensede brukere',
             '4K output',
             'Dedikert støtte',
-            'Custom integrasjoner',
+            'Tilpassede integrasjoner',
         ],
         current: false,
     },
@@ -238,7 +240,7 @@ export function BillingPage() {
                                                     >
                                                         Nåværende Plan
                                                     </Button>
-                                                ) : plan.price === 'Custom' ? (
+                                                ) : plan.name === 'Enterprise' ? (
                                                     <Button
                                                         variant='outline'
                                                         className='w-full gap-1.5 hover:bg-secondary cursor-pointer'

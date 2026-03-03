@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Upload,
@@ -15,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { navigate } from 'astro:transitions/client';
 
 interface UploadedImage {
     id: string;
@@ -59,7 +59,7 @@ const plans = [
     },
     {
         name: 'Enterprise',
-        price: 'Custom',
+        price: 'Kontakt salg',
         description:
             'For større bedrifter med spesialtilpassede behov.',
         features: [
@@ -124,7 +124,7 @@ const OnboardingPage = () => {
 
     const handleComplete = () => {
         localStorage.setItem('archway_onboarded', 'true');
-        // navigate('/');
+        navigate('/');
     };
 
     const slideVariants = {
@@ -168,7 +168,7 @@ const OnboardingPage = () => {
                 </div>
             </header>
 
-            <div className='flex-1 flex flex-col items-center justify-center md:justify-start px-4 py-8'>
+            <div className='flex-1 flex flex-col items-center justify-start px-4 py-10'>
                 <div className='flex items-center gap-2 mb-10'>
                     {STEPS.map((s, i) => (
                         <div key={s.number} className='flex items-center gap-2'>
@@ -207,7 +207,7 @@ const OnboardingPage = () => {
                     ))}
                 </div>
 
-                <div className='w-full max-w-4xl overflow-hidden mt-0 md:mt-15'>
+                <div className='w-full max-w-4xl overflow-hidden mt-5 md:mt-10'>
                     <AnimatePresence mode='wait' custom={direction}>
                         {step === 1 && (
                             <motion.div
@@ -413,7 +413,7 @@ const OnboardingPage = () => {
                                 </div>
 
                                 <div className='flex items-center justify-between pt-2'>
-                                    <div className='flex items-center gap-3'>
+                                    <div className='flex items-center gap-1'>
                                         <Button
                                             variant='ghost'
                                             onClick={goBack}
@@ -455,7 +455,7 @@ const OnboardingPage = () => {
                                 transition={{ duration: 0.3 }}
                                 className='space-y-6 w-full max-sm:flex max-sm:flex-col'
                             >
-                                <div className='text-center mb-6'>
+                                <div className='text-center mb-8'>
                                     <h2 className='font-serif text-3xl font-bold text-foreground'>
                                         Velg en plan
                                     </h2>
