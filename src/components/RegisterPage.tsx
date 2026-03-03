@@ -5,7 +5,7 @@ import { Mail, Lock, User, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { toast, Toaster } from 'sonner';
+import { toast } from 'sonner';
 
 const RegisterPage = () => {
     // const navigate = useNavigate();
@@ -34,7 +34,6 @@ const RegisterPage = () => {
 
     return (
         <div className='min-h-screen flex'>
-            <Toaster position='top-center' />
             <div className='hidden lg:flex lg:w-1/2 bg-foreground relative items-center justify-center overflow-hidden'>
                 <img src="/images/render_134.png" alt="Render" className='absolute' />
                 <motion.div className='absolute inset-0 backdrop-blur-xs bg-primary/40' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} />

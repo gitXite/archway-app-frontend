@@ -1,9 +1,12 @@
 ---
 import RegisterPage from '@/components/RegisterPage';
 import Layout from '@/layouts/Layout.astro';
+import { Toaster } from 'sonner';
+import "sonner/dist/styles.css";
 import '@/styles/global.css';
 ---
 
 <Layout title='Archway - Registrering' description='Registrering'>
+    <Toaster position='top-center' client:load />
     <RegisterPage client:load />
 </Layout>
