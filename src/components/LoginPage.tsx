@@ -11,9 +11,9 @@ const LoginPage = () => {
 
     return (
         <div className='min-h-screen flex'>
-            <div className='hidden lg:flex lg:w-1/2 bg-foreground relative items-center justify-center overflow-hidden'>
-                <img src="/images/render_65.png" alt="Render" className='absolute w-full' style={{ top: '50%', transform: 'translateY(-38%)' }} />
-                <motion.div className='absolute inset-0 backdrop-blur-xs bg-primary/40' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} />
+            <div className='hidden lg:flex lg:w-1/2 bg-foreground relative items-center justify-center overflow-hidden group'>
+                <img src="/images/render_141.png" alt="Render" className='absolute w-full' style={{ top: '50%', transform: 'translateY(-38%)' }} />
+                <motion.div className='absolute inset-0 backdrop-blur-xs bg-primary/40 group-hover:backdrop-blur-none group-hover:bg-primary/0 transition-all duration-500' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.4 }} />
 
                 <motion.div 
                     className='absolute right-0 bottom-0 py-2 px-4'
@@ -29,7 +29,7 @@ const LoginPage = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className='relative z-10 text-center px-12'
                 >
-                    <div className='flex items-center justify-center gap-4 pointer-events-none'>
+                    <div className='flex items-center justify-center gap-4 pointer-events-none group-hover:-translate-x-200 transition-transform duration-500'>
                         <div className='flex items-center justify-center h-16 w-16 mb-6'>
                             <img src="/images/archway-logo.webp" alt="Archway Logo" />
                         </div>
@@ -37,7 +37,7 @@ const LoginPage = () => {
                             Archway
                         </h1>
                     </div>
-                    <p className='text-primary-foreground/90 text-lg max-w-md'>
+                    <p className='text-primary-foreground/90 text-lg max-w-md group-hover:-translate-x-200 transition-transform duration-500'>
                         Arkitektonisk visualisering drevet av intelligens
                     </p>
                 </motion.div>
