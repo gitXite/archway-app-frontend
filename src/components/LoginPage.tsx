@@ -38,7 +38,7 @@ const LoginPage = () => {
                         </h1>
                     </div>
                     <p className='text-primary-foreground/90 text-lg max-w-md group-hover:-translate-x-200 transition-transform duration-500'>
-                        Arkitektonisk visualisering drevet av intelligens
+                        Arkitektonisk visualisering drevet av KI
                     </p>
                 </motion.div>
             </div>

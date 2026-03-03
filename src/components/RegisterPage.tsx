@@ -68,7 +68,7 @@ const RegisterPage = () => {
                     </div>
                     <p className='text-primary-foreground/90 text-lg max-w-md group-hover:-translate-x-200 transition-transform duration-500'>
                         Lag imponerende arkitektoniske visualiseringer
-                        på få minutter
+                        på få minutter - din visuelle identitet bevart
                     </p>
                 </motion.div>
             </div>
