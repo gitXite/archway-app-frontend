@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { OnboardingModal } from '@/components/modals/Onboarding';
+import { OnboardingModal } from '@/components/modals/OnboardingModal';
 
 
 export default function Onboarding() {

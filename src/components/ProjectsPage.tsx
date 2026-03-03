@@ -224,7 +224,7 @@ export function ProjectsPage() {
                             >
                                 <div className='flex items-start justify-between'>
                                     <div className='flex items-center gap-3'>
-                                        <div className='h-10 w-10 rounded-xl bg-secondary flex items-center justify-center'>
+                                        <div className='h-10 w-10 rounded-lg bg-secondary flex items-center justify-center'>
                                             <FolderOpen className='h-5 w-5 text-muted-foreground' />
                                         </div>
                                         <div>

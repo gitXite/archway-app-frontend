@@ -31,7 +31,7 @@ const navItems = [
 ];
 const navItemsSupport = [
     { title: 'Dokumentasjon', url: '/dashboard/dokumentasjon', icon: BookOpen, shortcut: '' },
-    { title: 'Kontakt Support', url: '/dashboard/kontakt', icon: Headset },
+    { title: 'Kontakt Support', url: '/kontakt', icon: Headset },
 ]
 const navItemsAdmin = [
     { title: 'Team', url: '/dashboard/team', icon: UsersRound },
