@@ -120,7 +120,7 @@ export function BillingPage() {
                                     Nåværende Bruk
                                 </CardTitle>
                                 <CardDescription>
-                                    Februar 2025 Faktureringssyklus
+                                    Februar 2026
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className='space-y-4'>
