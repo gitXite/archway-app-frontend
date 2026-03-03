@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { OnboardingModal } from '@/components/modals/Onboarding';
 
 
-export default function DashboardWithOnboarding() {
+export default function Onboarding() {
     const [showOnboarding, setShowOnboarding] = useState(false);
 
     useEffect(() => {
