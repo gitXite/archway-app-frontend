@@ -7,7 +7,6 @@ import {
 import { AppSidebar } from '@/components/AppSidebar';
 import { Toaster } from 'sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import Onboarding from '@/components/Onboarding';
 import "sonner/dist/styles.css";
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -31,7 +30,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                         </header>
                         <main className='flex-1 overflow-auto'>{children}</main>
                         <Toaster position='top-center' />
-                        <Onboarding />
                     </SidebarInset>
                 </div>
             </SidebarProvider>
