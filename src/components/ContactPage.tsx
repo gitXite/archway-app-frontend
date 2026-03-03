@@ -53,7 +53,7 @@ export default function ContactPage() {
         setTimeout(() => {
             setSending(false);
             setForm({ name: '', email: '', subject: '', message: '' });
-            toast('Melding sendt', {
+            toast.success('Melding sendt', {
                 description: "Vi kommer tilbake til deg snarest.",
             });
         }, 1200);
