@@ -114,7 +114,7 @@ const RegisterPage = () => {
                                 <Input
                                     id='email'
                                     type='email'
-                                    placeholder='kollega@bedrift.com'
+                                    placeholder='eksempel@domene.com'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className='pl-10'
