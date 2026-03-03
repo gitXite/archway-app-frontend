@@ -54,7 +54,7 @@ export function AppSidebar() {
                 <a href="/">
                     <div className='flex items-center gap-2.5'>
                         <div className='h-8 w-8 rounded-lg flex items-center justify-center'>
-                            <img src='/images/archway-logo.webp' alt='Archway' />
+                            <img src='/images/archway-logo.webp' alt='Archway Logo' />
                         </div>
                         <span className='font-serif text-xl text-foreground tracking-tight'>
                             Archway
