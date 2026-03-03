@@ -48,6 +48,11 @@ export function AppSidebar() {
         setPathname(window.location.pathname);
     });
 
+    const handleSignOut = () => {
+        // log off user
+        navigate('https://app.archway.no');
+    };
+
     return (
         <Sidebar className='border-r-0 overflow-hidden'>
             <SidebarHeader className='p-5 bg-sidebar-background'>
@@ -218,9 +223,7 @@ export function AppSidebar() {
                             <DropdownMenuGroup>
                                 <DropdownMenuItem
                                     variant='destructive'
-                                    onClick={() =>
-                                        navigate('https://archway.no')
-                                    }
+                                    onClick={handleSignOut}
                                 >
                                     Logg av
                                 </DropdownMenuItem>

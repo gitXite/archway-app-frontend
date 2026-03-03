@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import { navigate } from 'astro:transitions/client';
 
 const RegisterPage = () => {
-    // const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,9 +25,11 @@ const RegisterPage = () => {
             });
             setPassword('');
             setConfirmPassword('');
+            return;
         } else {
             setPassword('');
             setConfirmPassword('');
+            navigate('/onboarding');
         }
     };
 
