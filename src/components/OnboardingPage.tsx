@@ -475,7 +475,7 @@ const OnboardingPage = () => {
                                                 onClick={() =>
                                                     setSelectedPlan(plan.name)
                                                 }
-                                                className={`relative w-70 h-90 text-left rounded-xl bg-card border-2 p-5 transition-all justify-self-center ${
+                                                className={`relative w-70 h-90 text-left rounded-xl bg-card border p-5 transition-all justify-self-center ${
                                                     isSelected
                                                         ? 'border-foreground'
                                                         : 'border-border hover:border-foreground/30'
