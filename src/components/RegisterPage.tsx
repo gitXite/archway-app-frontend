@@ -104,6 +104,7 @@ const RegisterPage = () => {
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className='pl-10'
+                                    required
                                 />
                             </div>
                         </div>
@@ -119,6 +120,7 @@ const RegisterPage = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className='pl-10'
+                                    required
                                 />
                             </div>
                         </div>
@@ -136,6 +138,7 @@ const RegisterPage = () => {
                                         setPassword(e.target.value)
                                     }
                                     className='pl-10'
+                                    required
                                 />
                             </div>
                             <div className='flex items-center gap-1'>
@@ -156,6 +159,7 @@ const RegisterPage = () => {
                                         setConfirmPassword(e.target.value)
                                     }
                                     className='pl-10'
+                                    required
                                 />
                             </div>
                         </div>
