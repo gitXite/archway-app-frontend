@@ -12,7 +12,7 @@ const ForgotPasswordPage = () => {
     return (
         <div className='min-h-screen flex'>
             <div className='hidden lg:flex lg:w-1/2 bg-foreground relative items-center justify-center overflow-hidden group'>
-                <img src="/images/render_141.png" alt="Render" className='absolute w-full' style={{ top: '50%', transform: 'translateY(-38%)' }} />
+                <img src="/images/interior_render.png" alt="Render" className='absolute w-full' style={{ top: '50%', transform: 'translateY(-60%)' }} />
                 <motion.div className='absolute inset-0 backdrop-blur-xs bg-primary/40 group-hover:backdrop-blur-none group-hover:bg-primary/0 transition-all duration-500' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.4 }} />
 
                 <motion.div 
