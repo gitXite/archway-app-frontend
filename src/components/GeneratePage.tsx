@@ -109,7 +109,7 @@ function ImageUploadZone({
     );
 }
 
-const categories: string[] = ['Bolig (LoRA)', 'Næring', 'Interiør', 'Landskap'];
+const categories: string[] = ['Bolig', 'Næring', 'Interiør', 'Landskap'];
 
 export function GeneratePage() {
     const [inputImage, setInputImage] = useState<string | null>(null);

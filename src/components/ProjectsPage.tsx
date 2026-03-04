@@ -38,13 +38,13 @@ interface Project {
 
 const demoProjects: Project[] = [
     {
-        id: '1',
+        id: crypto.randomUUID(),
         name: 'Villa Nordstrand',
         renders: [],
         createdAt: new Date('2025-01-15'),
     },
     {
-        id: '2',
+        id: crypto.randomUUID(),
         name: 'Kontorbygg Aker Brygge',
         renders: [],
         createdAt: new Date('2025-02-01'),
@@ -100,13 +100,13 @@ export function ProjectsPage() {
     const createProject = () => {
         if (!newName.trim()) return;
         setProjects((prev) => [
+            ...prev,
             {
                 id: crypto.randomUUID(),
                 name: newName.trim(),
                 renders: [],
                 createdAt: new Date(),
             },
-            ...prev,
         ]);
 
         // create in database
@@ -298,7 +298,7 @@ export function ProjectsPage() {
                                                 className='text-destructive focus:text-destructive focus:bg-destructive/10 focus:cursor-pointer transition-colors'
                                             >
                                                 <Trash2 className='h-4 w-4 mr-3 text-destructive' />
-                                                Fjern
+                                                Slett
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
@@ -335,7 +335,7 @@ export function ProjectsPage() {
                         />
                         <div className='flex justify-end gap-2'>
                             <Button
-                                variant='ghost'
+                                variant='outline'
                                 onClick={() => setShowNewRenameDialog(false)}
                                 className='cursor-pointer hover:bg-secondary'
                             >
@@ -386,7 +386,7 @@ export function ProjectsPage() {
                         </div>
                         <div className='flex justify-end gap-2'>
                             <Button
-                                variant='ghost'
+                                variant='outline'
                                 onClick={() => setShowNewShareDialog(false)}
                                 className='cursor-pointer hover:bg-secondary'
                             >
@@ -409,6 +409,15 @@ export function ProjectsPage() {
 
             <Dialog open={showConfirm} onOpenChange={setShowConfirm}>
                 <DialogContent className='w-fit' showCloseButton={false}>
+                    <DialogHeader>
+                        <DialogTitle className='font-serif text-xl'>
+                            Slett Prosjekt
+                        </DialogTitle>
+                        <DialogDescription>
+                            Er du sikker på at du vil slette dette prosjektet?
+                            Denne handlingen kan ikke angres.
+                        </DialogDescription>
+                    </DialogHeader>
                     <div className='flex justify-center gap-6'>
                         <Button
                             variant='ghost'
@@ -469,7 +478,7 @@ export function ProjectsPage() {
                         />
                         <div className='flex justify-end gap-2'>
                             <Button
-                                variant='ghost'
+                                variant='outline'
                                 onClick={() => setShowNewProjectDialog(false)}
                                 className='cursor-pointer hover:bg-secondary'
                             >
