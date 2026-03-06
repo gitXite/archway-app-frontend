@@ -180,7 +180,7 @@ export function ProjectsPage() {
                             Visualiseringer vil havne her etter generering.
                         </p>
                         <p className='text-xs text-muted-foreground/70 mt-1'>
-                            Naviger til Visualisering og velg dette prosjektet som
+                            Naviger til <a className='underline' href="/dashboard">Visualisering</a> og velg dette prosjektet som
                             destinasjon.
                         </p>
                     </div>
