@@ -34,7 +34,7 @@ const plans = [
         price: 'NOK 499/mnd',
         description: 'For individuelle arkitekter.',
         features: [
-            '200 renderinger / mnd',
+            '200 visualiseringer / mnd',
             'Ingen LoRA',
             '1 bruker',
             '5 prosjekter',
@@ -48,10 +48,10 @@ const plans = [
         price: 'NOK 1499/mnd',
         description: 'For bedrifter og kontorer.',
         features: [
-            'Ubegrensede renderinger',
+            'Ubegrensede visualiseringer',
             '5 LoRA modeller',
-            'Ubegrensede prosjekter',
             'Opptil 30 brukere',
+            'Ubegrensede prosjekter',
             '2K oppløsning',
             'Email support',
             'Admin tilgang',
@@ -64,10 +64,10 @@ const plans = [
         description:
             'For større bedrifter med spesialtilpassede behov.',
         features: [
-            'Ubegrensede renderinger',
+            'Ubegrensede visualiseringer',
             'Ubegrensede LoRA modeller',
-            'Ubegrensede prosjekter',
             'Ubegrensede brukere',
+            'Ubegrensede prosjekter',
             '4K oppløsning',
             'Dedikert støtte',
             'Tilpassede integrasjoner',

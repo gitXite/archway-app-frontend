@@ -168,7 +168,7 @@ export function ProjectsPage() {
                         {selectedProject.name}
                     </h1>
                     <p className='text-sm text-muted-foreground mt-1'>
-                        {selectedProject.renders.length} renderinger
+                        {selectedProject.renders.length} visualiseringer
                     </p>
                 </div>
                 <div className='flex-1 px-8 pb-8'>
@@ -177,10 +177,10 @@ export function ProjectsPage() {
                             <Image className='h-6 w-6 text-muted-foreground' />
                         </div>
                         <p className='text-sm text-muted-foreground'>
-                            Renderinger vil havne her etter generering.
+                            Visualiseringer vil havne her etter generering.
                         </p>
                         <p className='text-xs text-muted-foreground/70 mt-1'>
-                            Naviger til Rendering og velg dette prosjektet som
+                            Naviger til Visualisering og velg dette prosjektet som
                             destinasjon.
                         </p>
                     </div>
@@ -197,7 +197,7 @@ export function ProjectsPage() {
                         Prosjekter
                     </h1>
                     <p className='text-muted-foreground mt-1 text-sm'>
-                        Organiser dine renderinger i prosjektmapper.
+                        Organiser dine visualiseringer i prosjektmapper.
                     </p>
                 </div>
                 <Button
@@ -233,7 +233,7 @@ export function ProjectsPage() {
                                             </p>
                                             <p className='text-xs text-muted-foreground'>
                                                 {project.renders.length}{' '}
-                                                renderinger •{' '}
+                                                visualiseringer •{' '}
                                                 {project.createdAt.toLocaleDateString(
                                                     'nb-NO',
                                                     {
@@ -463,7 +463,7 @@ export function ProjectsPage() {
                             Nytt Prosjekt
                         </DialogTitle>
                         <DialogDescription>
-                            Lag en mappe for å organisere renderingene dine.
+                            Lag en mappe for å organisere visualiseringene dine.
                         </DialogDescription>
                     </DialogHeader>
                     <div className='space-y-4 mt-2'>

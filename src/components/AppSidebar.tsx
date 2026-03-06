@@ -26,7 +26,7 @@ import { navigate } from 'astro:transitions/client';
 import { useEffect, useState } from 'react';
 
 const navItems = [
-    { title: 'Rendering', url: '/dashboard', icon: Sparkles, shortcut: '' },
+    { title: 'Visualisering', url: '/dashboard', icon: Sparkles, shortcut: '' },
     { title: 'Prosjekter', url: '/dashboard/prosjekter', icon: FolderOpen, shortcut: '' },
 ];
 const navItemsSupport = [

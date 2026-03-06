@@ -45,10 +45,10 @@ const guides = [
         ],
     },
     {
-        category: 'Rendering',
+        category: 'Visualisering',
         items: [
             {
-                title: 'Render Innstillinger Forklart',
+                title: 'Visualisering Forklart',
                 description:
                     'Oppløsning, sampling, presets, og hvordan de påvirker output.',
                 time: '6 min lesetid',
@@ -76,7 +76,7 @@ const guides = [
             {
                 title: 'Tren LoRA Modeller',
                 description:
-                    'Steg-for-steg veiledning for finjustering av renderinger',
+                    'Steg-for-steg veiledning for finjustering av visualiseringer',
                 time: '8 min lesetid',
                 tag: 'Middels',
             },
@@ -129,15 +129,15 @@ const faqs = [
         ],
     },
     {
-        category: 'Rendering',
+        category: 'Visualisering',
         questions: [
             {
                 q: 'Hvilke oppløsningsinnstillinger er tilgjengelige?',
-                a: 'Vi støtter renderinger fra 512x512 og opp til 2560x1440, avhengig av plan. Som standard er oppløsning avhengig av størrelse på input bilde.',
+                a: 'Vi støtter visualiseringer fra 1024x1024 og opp til 4K oppløsning, avhengig av plan. Som standard er oppløsning avhengig av størrelse på input bilde.',
             },
             {
-                q: 'Hvor lang tid tar det å generere en render?',
-                a: 'De fleste renderingene fullføres innen 10-15 sekunder avhengig av oppløsning og kompleksitet. Lengre tid kan forventes ved oppstart av servere.',
+                q: 'Hvor lang tid tar det å generere en visualisering?',
+                a: 'De fleste visualiseringene fullføres innen 10-15 sekunder avhengig av oppløsning og kompleksitet. Lengre tid kan forventes ved oppstart av servere.',
             },
             {
                 q: 'Hvorfor får jeg ikke ønsket resultat?',
@@ -155,7 +155,7 @@ const faqs = [
             },
             {
                 q: 'Hvor lang tid tar modell-treningen?',
-                a: "Kjøretiden vil være avhengig av flere faktorer som for eksempel hardware spesifikasjoner, parametre og dataset, men forventet tid er rundt 1 time. I mellomtiden kan renderinger genereres uten en LoRA og du vil få en notifikasjon når treningen er fullført.",
+                a: "Kjøretiden vil være avhengig av flere faktorer som for eksempel hardware spesifikasjoner, parametre og dataset, men forventet tid er rundt 1 time. I mellomtiden kan visualiseringer genereres uten en LoRA og du vil få en notifikasjon når treningen er fullført.",
             },
             {
                 q: 'Kan jeg bruke en LoRA modell på tvers av prosjekt?',

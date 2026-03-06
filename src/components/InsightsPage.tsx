@@ -63,7 +63,7 @@ const timeChartConfig: ChartConfig = {
 
 const stats = [
     {
-        label: 'Antall renderinger',
+        label: 'Antall visualiseringer',
         value: '563',
         change: '+26% denne måneden',
         icon: Image,
@@ -75,7 +75,7 @@ const stats = [
         icon: Clock,
     },
     {
-        label: 'Snitt Render Tid',
+        label: 'Snitt Genereringstid',
         value: '15s',
         change: '-12% denne måneden',
         icon: Zap,
@@ -139,7 +139,7 @@ export function InsightsPage() {
                         <Card className='border-border/60'>
                             <CardHeader className='pb-2'>
                                 <CardTitle className='text-sm font-medium text-foreground'>
-                                    Månedlige Renderinger
+                                    Månedlige Visualiseringer
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -230,7 +230,7 @@ export function InsightsPage() {
                         <Card className='border-border/60'>
                             <CardHeader className='pb-2'>
                                 <CardTitle className='text-sm font-medium text-foreground'>
-                                    Renderinger av Kategori
+                                    Visualiseringer av Kategori
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className='flex items-center justify-center'>
@@ -301,13 +301,13 @@ export function InsightsPage() {
                                 <div className='space-y-3'>
                                     {[
                                         {
-                                            action: 'Render fullført',
+                                            action: 'Visualisering fullført',
                                             project: 'Fjordheim Residens',
                                             time: '12 min siden',
                                             duration: '24s',
                                         },
                                         {
-                                            action: 'Render fullført',
+                                            action: 'Visualisering fullført',
                                             project: 'Solstrand Kontor',
                                             time: '1 timer siden',
                                             duration: '31s',
@@ -319,7 +319,7 @@ export function InsightsPage() {
                                             duration: '8 min',
                                         },
                                         {
-                                            action: 'Render fullført',
+                                            action: 'Visualisering fullført',
                                             project:
                                                 'Bryggen Kulturelle Senter',
                                             time: '5 timer siden',
@@ -332,7 +332,7 @@ export function InsightsPage() {
                                             duration: '—',
                                         },
                                         {
-                                            action: 'Render fullført',
+                                            action: 'Visualisering fullført',
                                             project: 'Vesterålen Hytte',
                                             time: 'I går',
                                             duration: '22s',

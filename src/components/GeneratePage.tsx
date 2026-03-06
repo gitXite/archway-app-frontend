@@ -135,7 +135,7 @@ export function GeneratePage() {
         setTimeout(() => {
             setIsGenerating(false);
             setGeneratedImage(inputImage); // placeholder — would be API result
-            toast.success('Render fullført', {
+            toast.success('Visualisering fullført', {
                 description: project,
             });
         }, 3000);
@@ -148,11 +148,11 @@ export function GeneratePage() {
         <div className='p-6 md:p-10 md:px-15 mx-auto space-y-4'>
             <div className='pb-2'>
                 <h1 className='text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight'>
-                    Rendering
+                    Visualisering
                 </h1>
                 <p className='text-sm text-muted-foreground mt-1'>
                     Last opp en input-tegning og et referansebilde for å
-                    generere en render.
+                    generere en visualisering.
                 </p>
 
                 <div className='flex flex-col sm:flex-row gap-0 sm:gap-6'>
@@ -182,7 +182,8 @@ export function GeneratePage() {
                             </ComboboxList>
                         </ComboboxContent>
                     </Combobox>
-                    <Combobox
+                    <Select></Select>
+                    {/* <Combobox
                         items={categories}
                         defaultValue={category}
                         onValueChange={(value) =>
@@ -208,7 +209,7 @@ export function GeneratePage() {
                                 )}
                             </ComboboxList>
                         </ComboboxContent>
-                    </Combobox>
+                    </Combobox> */}
                 </div>
             </div>
 
@@ -243,7 +244,7 @@ export function GeneratePage() {
                                 </>
                             ) : (
                                 <>
-                                    Generer Render
+                                    Generer Visualisering
                                     <ArrowRight className='h-5 w-5' />
                                 </>
                             )}
@@ -269,7 +270,7 @@ export function GeneratePage() {
                                             <div className='absolute inset-0 h-16 w-16 rounded-full border-2 border-primary border-t-transparent animate-spin' />
                                         </div>
                                         <p className='text-sm text-muted-foreground'>
-                                            Oppretter din render...
+                                            Oppretter din visualisering...
                                         </p>
                                     </div>
                                 ) : generatedImage ? (
@@ -281,7 +282,7 @@ export function GeneratePage() {
                                     >
                                         <img
                                             src={generatedImage}
-                                            alt='Generated render'
+                                            alt='Output'
                                             className='w-full h-full object-cover'
                                         />
                                     </a>
