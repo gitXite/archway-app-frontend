@@ -1,17 +1,17 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ImagePlus, ArrowRight, Loader2 } from 'lucide-react';
+import { ImagePlus, ArrowRight, Loader2, ChevronDown, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import {
     Combobox,
     ComboboxContent,
     ComboboxEmpty,
+    ComboboxGroup,
     ComboboxInput,
     ComboboxItem,
     ComboboxLabel,
     ComboboxList,
-    ComboboxValue,
 } from '@/components/ui/combobox';
 import {
     Select,
@@ -22,6 +22,17 @@ import {
     SelectTrigger,
     SelectValue,
 } from './ui/select';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import { Badge } from './ui/badge';
+import type { LoRAModel } from '@/types/LoRAModel';
+import { statusColor } from '@/utils/common';
 
 interface ImageUploadZoneProps {
     label: string;
@@ -113,6 +124,22 @@ function ImageUploadZone({
 }
 
 type categories = 'bolig' | 'næring' | 'interiør' | 'landskap';
+const loras: LoRAModel[] = [
+    {
+        id: crypto.randomUUID(),
+        name: 'Cubus',
+        status: 'trener',
+        images: [],
+        createdAt: new Date(),
+    },
+    {
+        id: crypto.randomUUID(),
+        name: 'Skole generell',
+        status: 'trent',
+        images: [],
+        createdAt: new Date(),
+    },
+];
 
 export function GeneratePage() {
     const [inputImage, setInputImage] = useState<string | null>(null);
@@ -121,6 +148,9 @@ export function GeneratePage() {
     const [generatedImage, setGeneratedImage] = useState<string | null>(null);
     const [project, setProject] = useState<string | null>(null);
     const [category, setCategory] = useState<categories | undefined>(undefined);
+    const [activeId, setActiveId] = useState('');
+
+    const active = loras.find((l) => l.id === activeId);
 
     const handleInputSelect = (file: File) => {
         setInputImage(URL.createObjectURL(file));
@@ -154,8 +184,8 @@ export function GeneratePage() {
                     Visualisering
                 </h1>
                 <p className='text-sm text-muted-foreground mt-1'>
-                    Last opp en input-tegning og et referansebilde for å
-                    generere en visualisering.
+                    Last opp en tegning og et referansebilde for å generere en
+                    visualisering.
                 </p>
 
                 <div className='flex flex-col sm:flex-row gap-0 sm:gap-6'>
@@ -167,7 +197,9 @@ export function GeneratePage() {
                     >
                         <ComboboxInput
                             placeholder='Velg et prosjekt'
-                            className={'w-50 mt-4 [&_input]:text-sm placeholder:text-sm'}
+                            className={
+                                'w-50 mt-4 [&_input]:text-sm placeholder:text-sm'
+                            }
                         />
                         <ComboboxContent>
                             <ComboboxEmpty>
@@ -209,6 +241,64 @@ export function GeneratePage() {
                             </SelectGroup>
                         </SelectContent>
                     </Select>
+                </div>
+                <div className='flex items-center gap-2'>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant='outline'
+                                className='rounded-full gap-2 border-border min-w-[fit] justify-between hover:bg-secondary'
+                            >
+                                <span
+                                    className={`truncate font-medium ${!active && 'text-muted-foreground'}`}
+                                >
+                                    {active ? active.name : 'Ingen LoRA valgt'}
+                                </span>
+                                <ChevronDown className='h-4 w-4 shrink-0 text-muted-foreground' />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            align='start'
+                            className='w-[200px]'
+                        >
+                            <DropdownMenuGroup>
+                                <DropdownMenuLabel className='text-muted-foreground px-2 py-1.5 text-xs font-normal'>
+                                    Opprettede LoRAer
+                                </DropdownMenuLabel>
+                                {loras.map((lora) => (
+                                    <DropdownMenuItem
+                                        key={lora.id}
+                                        onClick={() => setActiveId(lora.id)}
+                                        className='flex items-center justify-between gap-2'
+                                        disabled={lora.status !== 'trent'}
+                                    >
+                                        <span
+                                            className={`truncate ${lora.id === activeId ? 'font-semibold' : ''}`}
+                                        >
+                                            {lora.name}
+                                        </span>
+                                        <Badge
+                                            variant='secondary'
+                                            className={`text-[10px] px-1.5 py-0 ${statusColor[lora.status]}`}
+                                        >
+                                            {lora.status}
+                                        </Badge>
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    {activeId && (
+                        <Button
+                            variant='ghost'
+                            size='icon'
+                            onClick={() => setActiveId('')}
+                            className='h-fit w-fit text-muted-foreground hover:text-foreground hover:bg-background rounded-sm cursor-pointer'
+                            aria-label='Clear selection'
+                        >
+                            <X className='h-4 w-4' />
+                        </Button>
+                    )}
                 </div>
             </div>
 

@@ -32,20 +32,8 @@ import {
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-
-interface TrainingImage {
-    id: string;
-    file: File;
-    preview: string;
-}
-
-interface LoRAModel {
-    id: string;
-    name: string;
-    images: TrainingImage[];
-    status: 'utkast' | 'trener' | 'trent';
-    createdAt: Date;
-}
+import type { LoRAModel, TrainingImage } from '@/types/LoRAModel';
+import { statusColor } from '@/utils/common';
 
 const DEFAULT_LORA: LoRAModel = {
     id: crypto.randomUUID(),
@@ -165,12 +153,6 @@ export function TrainingPage() {
     };
 
     const canTrain = images.length >= 10;
-
-    const statusColor: Record<LoRAModel['status'], string> = {
-        utkast: 'bg-muted text-muted-foreground',
-        trener: 'bg-primary/10 text-primary',
-        trent: 'bg-primary/20 text-primary',
-    };
 
     const openFilePicker = () => {
         const input = document.createElement('input');
