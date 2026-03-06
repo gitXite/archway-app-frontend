@@ -408,9 +408,9 @@ export function ProjectsPage() {
             </Dialog>
 
             <Dialog open={showConfirm} onOpenChange={setShowConfirm}>
-                <DialogContent className='w-fit' showCloseButton={false}>
+                <DialogContent className='sm:max-w-md' showCloseButton={false}>
                     <DialogHeader>
-                        <DialogTitle className='font-serif text-xl'>
+                        <DialogTitle className='font-serif text-lg'>
                             Slett Prosjekt
                         </DialogTitle>
                         <DialogDescription>
@@ -418,20 +418,7 @@ export function ProjectsPage() {
                             Denne handlingen kan ikke angres.
                         </DialogDescription>
                     </DialogHeader>
-                    <div className='flex justify-center gap-6'>
-                        <Button
-                            variant='ghost'
-                            onClick={() => {
-                                setShowConfirm(false);
-                                if (deleteTimerRef.current) {
-                                    clearTimeout(deleteTimerRef.current);
-                                    deleteTimerRef.current = null;
-                                }
-                            }}
-                            className='cursor-pointer hover:bg-secondary border'
-                        >
-                            Avbryt
-                        </Button>
+                    <div className='flex flex-col sm:flex-row-reverse justify-center sm:justify-start gap-0 sm:gap-2'>
                         <div className='flex flex-col'>
                             <Button
                                 variant='ghost'
@@ -449,6 +436,19 @@ export function ProjectsPage() {
                                 <TimerCountdown initialDeciSeconds={20} />
                             )}
                         </div>
+                        <Button
+                            variant='ghost'
+                            onClick={() => {
+                                setShowConfirm(false);
+                                if (deleteTimerRef.current) {
+                                    clearTimeout(deleteTimerRef.current);
+                                    deleteTimerRef.current = null;
+                                }
+                            }}
+                            className='cursor-pointer hover:bg-secondary border'
+                        >
+                            Avbryt
+                        </Button>
                     </div>
                 </DialogContent>
             </Dialog>

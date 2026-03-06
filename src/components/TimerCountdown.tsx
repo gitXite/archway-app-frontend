@@ -21,8 +21,8 @@ export function TimerCountdown({ initialDeciSeconds }: { initialDeciSeconds: num
     const deciSeconds = timeLeft % 10;
 
     return (
-        <p className='absolute text-muted-foreground text-xs text-center bottom-1.5 right-1/2 translate-x-1/2'>
+        <span className='absolute text-muted-foreground text-xs text-center bottom-1.5 right-1/2 translate-x-1/2'>
             {String(seconds).padStart(1, '0')}.{String(deciSeconds).padStart(1, '0')}
-        </p>
+        </span>
     );
 }
