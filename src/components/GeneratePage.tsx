@@ -9,13 +9,16 @@ import {
     ComboboxEmpty,
     ComboboxInput,
     ComboboxItem,
+    ComboboxLabel,
     ComboboxList,
     ComboboxValue,
 } from '@/components/ui/combobox';
 import {
     Select,
     SelectContent,
+    SelectGroup,
     SelectItem,
+    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from './ui/select';
@@ -109,7 +112,7 @@ function ImageUploadZone({
     );
 }
 
-const categories: string[] = ['Bolig', 'Næring', 'Interiør', 'Landskap'];
+type categories = 'bolig' | 'næring' | 'interiør' | 'landskap';
 
 export function GeneratePage() {
     const [inputImage, setInputImage] = useState<string | null>(null);
@@ -117,7 +120,7 @@ export function GeneratePage() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedImage, setGeneratedImage] = useState<string | null>(null);
     const [project, setProject] = useState<string | null>(null);
-    const [category, setCategory] = useState<string | null>(categories[0]);
+    const [category, setCategory] = useState<categories | undefined>(undefined);
 
     const handleInputSelect = (file: File) => {
         setInputImage(URL.createObjectURL(file));
@@ -142,7 +145,7 @@ export function GeneratePage() {
     };
 
     const canGenerate =
-        inputImage && referenceImage && !isGenerating && project;
+        inputImage && referenceImage && !isGenerating && project && category;
 
     return (
         <div className='p-6 md:p-10 md:px-15 mx-auto space-y-4'>
@@ -164,7 +167,7 @@ export function GeneratePage() {
                     >
                         <ComboboxInput
                             placeholder='Velg et prosjekt'
-                            className={'w-50 my-4'}
+                            className={'w-50 mt-4 [&_input]:text-sm placeholder:text-sm'}
                         />
                         <ComboboxContent>
                             <ComboboxEmpty>
@@ -175,6 +178,7 @@ export function GeneratePage() {
                                     <ComboboxItem
                                         key={prosjekt}
                                         value={prosjekt}
+                                        className={'text-sm'}
                                     >
                                         {prosjekt}
                                     </ComboboxItem>
@@ -182,34 +186,29 @@ export function GeneratePage() {
                             </ComboboxList>
                         </ComboboxContent>
                     </Combobox>
-                    <Select></Select>
-                    {/* <Combobox
-                        items={categories}
-                        defaultValue={category}
-                        onValueChange={(value) =>
-                            setCategory(value as string | null)
-                        }
+                    <Select
+                        value={category}
+                        onValueChange={(v) => setCategory(v as categories)}
                     >
-                        <ComboboxInput
-                            placeholder='Velg en kategori'
-                            className={'w-50 mb-4 sm:my-4'}
-                        />
-                        <ComboboxContent>
-                            <ComboboxEmpty>
-                                Ingen kategorier funnet
-                            </ComboboxEmpty>
-                            <ComboboxList>
-                                {(category: string) => (
-                                    <ComboboxItem
-                                        key={category}
-                                        value={category}
-                                    >
-                                        {category}
-                                    </ComboboxItem>
-                                )}
-                            </ComboboxList>
-                        </ComboboxContent>
-                    </Combobox> */}
+                        <SelectTrigger className='w-50 my-4'>
+                            <SelectValue placeholder='Velg en kategori' />
+                        </SelectTrigger>
+                        <SelectContent position='popper'>
+                            <SelectGroup>
+                                <SelectLabel>Kategori</SelectLabel>
+                                <SelectItem value='bolig'>Bolig</SelectItem>
+                                <SelectItem value='næring'>
+                                    Næringsbygg
+                                </SelectItem>
+                                <SelectItem value='interiør'>
+                                    Interiør
+                                </SelectItem>
+                                <SelectItem value='landskap'>
+                                    Landskap
+                                </SelectItem>
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
 
